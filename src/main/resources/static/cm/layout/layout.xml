@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-stylesheet href="/cm/css/all.css" type="text/css"?><?xml-stylesheet href="/cm/css/main.css" type="text/css"?><?xml-stylesheet href="/cm/css/responsible.css" type="text/css"?><html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare" xmlns:xf="http://www.w3.org/2002/xforms">
+	<head>
+		<w2:type>DEFAULT</w2:type>
+		<w2:buildDate/>
+		<xf:model>
+			<xf:instance>
+				<data xmlns="">
+				</data>
+			</xf:instance>
+		</xf:model>
+		<script src="/cm/js/main.js"/>
+		<script lazy="false" type="text/javascript"><![CDATA[
+		
+	scwin.onpageload = function() {
+		scwin.initMainLoad();
+	};
+	
+	scwin.onpageunload = function() {
+	
+	};
+	
+	
+]]></script>
+		<style type="text/css"><![CDATA[ ]]></style>
+	</head>
+	<body ev:onpageload="scwin.onpageload" ev:onpageunload="scwin.onpageunload">
+		
+		<xf:group class="main_wrap" id="wrap" style="">
+			<w2:wframe class="main_header" id="wfm_header" initScript="" scope="true" src="/cm/layout/header.xml" style=""/>
+			<xf:group class="main_container" id="container">
+				<w2:wframe class="main_side" id="wfm_side" scope="true" src="/cm/layout/side.xml" style=""/>
+				<xf:group class="m_contents" id="contents"> 
+					<!-- class="win_c" -->
+					<w2:windowContainer class="win_c" controlIconPosition="allright" customMsg="" fixArrangeFullScreen="false" hideTitleOnMaximize="false" horizontalArrangeNum="2" id="wdc_main" nameLayerMove="true" sequentialArrangeColNum="2" sequentialArrangeRowNum="2" spaAuto="" spaAutoDelay="1000" spaInitCount="" stopToggleOnLast="false" style="" toolbarPosition="top" tooltipDisplay="true" tooltipGroupClass="false" useCloseButton="true" useControlIconTitle="false" useFixButton="false" useNameContainer="true" useStatusMsg="false" verticalArrangeNum="2" windowAutoResize="false" windowMaxNum="10" windowMaximizeAll="false" windowTooltipDisplay="true">
+							<w2:windowToolbar>
+							<w2:nameLayer/>
+							<w2:controlIconLayer>
+								<w2:controlIcon/>
+								<w2:controlIcon/>
+								<w2:controlIcon/>
+								<w2:controlIcon/>
+								<w2:controlIcon/>
+							</w2:controlIconLayer>
+							<w2:selectedNameLayer/>
+						</w2:windowToolbar>
+					</w2:windowContainer>
+					<w2:wframe class="bot_option" id="wfm_footer" scope="true" src="/cm/layout/footer.xml" style=""/>
+				</xf:group>
+			</xf:group>
+		</xf:group>
+	<xf:group class="dim" id="grp_dimLayer" style=""/></body>
+</html>
