@@ -58,7 +58,7 @@
         (ex) :  <stylesheet value="stylesheet_ext.css" import="link" enable="true" earlyImportList="/common/common.css,/theme/skin.css,xmlCommon.css"/>
     ,/ws5/websquare/externalJS/fullcalendar3.6.2/fullcalendar.css
     -->
-    <stylesheet value="stylesheet_ext.css" import="link" enable="true" earlyImportList="/ws5/css/edu.css"/>
+    <stylesheet value="stylesheet_ext.css" import="link" enable="true" earlyImportList=""/>
 	
 	<style>
 	    <removeDefaultClass value = "true" />
@@ -97,7 +97,7 @@
         공통 외부 js 모듈을 읽어 들인다.
     -->
     <engine>
-        <module src="/ws5/js/eduCommon.js" />
+        <module src="/cm/js/common.js" />
     </engine>
     
     <!--
@@ -378,8 +378,6 @@
     -->
     <treeview>
         <tooltipGroupClass value="false"/>
-        <defaultImage value="/ws5/img/folder_close.png"/>
-        <expandedImage value="/ws5/img/folder_open.png"/> 
     </treeview>
     
     <trigger>
@@ -423,8 +421,8 @@
     </scheduleCalendar>
     
     <languagePack useLanguagePack="true">
-      <url lang="ko" value="/ws5/js/lang/ko.js" />
-      <url lang="en" value="/ws5/js/lang/en.js" />
+      <url lang="ko" value="/cm/js/lang/ko.js" />
+      <url lang="en" value="/cm/js/lang/en.js" />
     </languagePack>
     <!-- <pageURLPrefix type="function" ignoreW2xPath="true" value="i18nUrl"/> -->
     <license value="true" />
