@@ -192,7 +192,7 @@
 	};
 
 	scwin.initDataCallback = function() {
-		$p.parent().wfm_header.getWindow().txt_empNm.setValue(dma_defInfo.get("EMP_NM"));
+		$p.parent().wfm_header.getWindow().txt_empNm.setValue("관리자");
 		trv_menu.expandNode(0, true);
 		gcm.menuComp = dlt_menu; //전체 공통 영역에 메뉴리스트 데이터 변수 설정.
 		gcm.shortcutComp = dlt_shortcutList; //전체 공통 영역에 단축키리스트 데이터 변수 설정.

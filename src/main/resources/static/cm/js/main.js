@@ -25,14 +25,6 @@ scwin.closeAction = function(windowTitle) {
 	return true;
 };
 
-/**
- * header menu 생성
- */
-scwin.setHeaderMenu = function() {
-	wfm_header.getWindow().scwin.setGenerator(); //메뉴 생성
-	wfm_header.getWindow().scwin.setMenuCss(); //메뉴 css 적용
-}
-
 scwin.getLayoutId = function() {
 	if (typeof $p.top().$p.getComponentById("tac_layout") === "object") {
 		return "T";
@@ -59,18 +51,5 @@ scwin.setResultMessage = function(resultData) {
 		messageObj.setValue(resultData.message);
 		wfm_footer.getWindow().grp_message.setUserData("message", resultData);
 		wfm_footer.getWindow().scwin.spn_message_onclick(); 
-	}
-}
-
-scwin.isMobileSize = function() {
-	var size = {
-		width: window.innerWidth || document.body.clientWidth,
-		height: window.innerHeight || document.body.clientHeight
-	};
-	
-	if (size.width <= 1024) {
-		return true;
-	} else {
-		return false;
 	}
 }

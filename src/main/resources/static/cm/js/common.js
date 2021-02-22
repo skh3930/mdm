@@ -1806,7 +1806,7 @@ com.messagBox = function(messageType, messageStr, closeCallbackFncName, isReturn
 		width : 340,
 		height : 150
 	};
-	com.openPopup(gcm.CONTEXT_PATH + "/cm/common/message_box.xml", options, data);
+	com.openPopup(gcm.CONTEXT_PATH + "/cm/common/popup.xml", options, data);
 };
 
 /**

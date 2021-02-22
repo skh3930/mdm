@@ -9,12 +9,9 @@
     <!-- system : websquare(*) -->
     <exceptionHandler value="websquare"/>
     <debugMenu value="use"/>
-    <welcome-file>/index.xml</welcome-file>
+    <welcome-file>/cm/common/main.xml</welcome-file>
     
-    <!--
-    	2017.11.07 
-        화면 내의 스크립트를 비동기로 실행할지(하위호환), 동기로 실행할지(권장)에 대한 설정 
-    -->
+    <!--화면 내의 스크립트를 비동기로 실행할지(하위호환), 동기로 실행할지(권장)에 대한 설정 -->
     <postDrawMode value="synchronous"></postDrawMode>
 
     <!-- 
@@ -32,9 +29,9 @@
     -->
     <byteCheckEncoding value="UTF-8" />
     
-    <!-- 2018.02.02 page내 script블럭 실행 순서 :: initScript -> onpageload -> postScript -->
+    <!-- page내 script블럭 실행 순서 :: initScript -> onpageload -> postScript -->
     <scriptPrecedence value="true"/>
-    <!-- 2019.01.01 SP3 기본 설정 :: 내 화면에 없는 객체를 참조할 때는 반드시 명시적인 방법으로만 참조할 수 있도록 하는 설정 -->
+    <!--  SP3 기본 설정 :: 내 화면에 없는 객체를 참조할 때는 반드시 명시적인 방법으로만 참조할 수 있도록 하는 설정 -->
     <strictMode value="true" id="mf"/>
     
     <initScript value="true" >
@@ -135,9 +132,9 @@
     <submission>
         <processMsg value=""/>
         <showSubmissionTime value="true"/>
-        <errorHandler value="com._sbm_errorHandler"/>
-        <preSubmitFunction value="com._sbm_preSubmitFunction"/>
-        <callbackSubmitFunction value=""/>
+        <errorHandler value="gcm._sbm_errorHandler"/>
+        <preSubmitFunction value="gcm._sbm_preSubmission"/>
+        <callbackSubmitFunction value="gcm._sbm_defCallbackSubmission"/>
         <!-- parameter이름=value 형태로 보내고자 할때 보낼 parameter이름 -->
         <requestID value=""/>
         <makeGlobalObject value="true"/>

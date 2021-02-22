@@ -122,7 +122,6 @@ body {
 	height: 32px;
 	margin-left: -128px;
 	background-color: rgba(0, 0, 0, 0.5);
-	background-color:#333\9;
 	color: #fff
 }
 .toolbar__button {
@@ -240,31 +239,7 @@ body {
 .head_box{position:relative; height:44px; background:#324258}
 .head_box a.logo{display:block;position:absolute;left:48px;top:5px;width:162px;height:28px}
 
-.head_box .nav{position:absolute;top:0;left:213px;right:0;height:40px;background:none;font-size:13px;}
-.head_box .nav > li{position:relative; display: inline-block;}
-.head_box .nav > li.on{background:#3879d9}
-.head_box .nav > li > a{display:block;margin:0;color:#fff; width:180px; line-height:44px;font-weight:bold; text-align: center;}
-.head_box .nav > li > a:hover,
-.head_box .nav > li > a.on{background:#3879d9}
-.head_box .nav > li .submenu{display:none; position:absolute; left:0; top:44px; background:#fff; z-index:1000; text-indent:15px;border: 1px solid #c4cad6;border-top:none}
-.head_box .nav > li .submenu.on{display:block;}
-.head_box .nav > li .submenu > li{position:relative; line-height:27px;  width:180px;}
-.head_box .nav > li .submenu > li > a{display:block; background:url(/cm/images/inc/ico_gnb_plus.png) no-repeat 165px center;padding:3px;}
-.head_box .nav > li .submenu > li > a:hover,
-.head_box .nav > li .submenu > li > a.on{background:#f7f8fb url(/cm/images/inc/ico_gnb_minus.png) no-repeat 165px center;}
-.head_box .nav > li .submenu > li:first-child > a{border-top: 0;}
-.head_box .nav > li .submenu > li:last-child > a{border-bottom: 0;}
-.head_box .nav > li .submenu > li > .depth3{display:none; position:absolute; left:180px; top:0px; background:#fff; border: 1px solid #c4cad6;}
-.head_box .nav > li .submenu > li > .depth3.on{display:block;}
-.head_box .nav > li .submenu > li > .depth3 > li{line-height:27px;}
-#winc_header .head_box .nav > li .submenu > li > .depth3 > li{width:190px; text-indent:15px;}
-.head_box .nav > li .submenu > li > .depth3 > li:last-child > a{}
-.head_box .nav > li .submenu > li > .depth3 > li > a{display: block; overflow: hidden; text-overflow:ellipsis; padding:3px;}
-.head_box .nav > li .submenu > li > .depth3 > li > a:hover{background:#f7f8fb}
-
-
-.infobox{z-index:200;position:absolute;right:60px;top:12px;padding:0 20px 0 0;margin:0}/* right:191px */
-.infobox:before{content:'';position:absolute;right:0;top:0;width:1px;height:23px;background:#a3a5a8}
+.infobox{z-index:200;position:absolute;right:10px;top:12px;padding:0 20px 0 0;margin:0}/* right:191px */
 .infobox .info_tit{display:inline-block;padding:4px 5px 4px 0;margin:0;color:#9ea1a4;font-size:14px;line-height:15px;vertical-align:middle}
 .infobox .info_tit.name_tit{color:#abe46d;padding-right:5px;}
 .infobox .info_tit.department_tit{color:#fff;padding-right:10px}
@@ -408,7 +383,6 @@ body {
 .win_c .w2window_body{top:30px;background-color:transparent}
 .win_c .w2window_content{left:0;right:0;bottom:0;border:0;}/* bottom:24px */
 
-/* ������� */
 .win_c .w2windowContainer_windowToolbar_top {height:36px; background:transparent;}
 .win_c .w2windowContainer_name{height:36px; right:200px;}
 .win_c .w2windowContainer_controlIconLayer{width:207px !important;left:auto;right:5px;background-image:none;top:5px;}
@@ -428,7 +402,6 @@ body {
 .win_c .w2windowContainer_scrollRightBtn{background: url(/cm/images/inc/btn_mdiright.png);width:27px;padding:0;margin-right:152px !important}
 .win_c .w2windowContainer_scrollLeftBtn{background: url(/cm/images/inc/btn_mdileft.png);width:28px;padding:0;left:195px;}
 
-/* ���¹� */
 .win_c .w2window_status{left:0;right:0;background:url(/cm/images/inc/bg_status_bar.gif) repeat-x;border:1px solid #b3b3b3;border-width:1px 0 0px 0}
 .win_c .w2window_msg {left:5px;width:auto;padding:3px 0 0 19px;height:15px;color:#495255;background:url(/cm/images/inc/bg_icon_msg.png) no-repeat 0 5px;}
 

@@ -43,7 +43,7 @@
 				<w2:attributes>
 					<w2:href>javascript:com.goHome()</w2:href>
 				</w2:attributes>
-				<xf:image id="" style="" alt="inswave" src="/cm/images/inc/w5_logo.png" ev:onclick=""></xf:image>
+				<xf:image id="" style="" alt="inswave" src="/cm/images/inc/logo_kyobo.png" ev:onclick=""></xf:image>
 			</xf:group>
 			<w2:anchor id="btn_toggle" outerDiv="false" class="btn_aside" ev:onclick="scwin.btn_toggle_onclick">
 				<xf:label><![CDATA[사이드메뉴 열기/닫기]]></xf:label>
