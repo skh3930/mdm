@@ -31,7 +31,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
     var status = "";
     var optionParam = "";
     var maxFileSize = -1;
-    var columnOrder = "";
+    var useModalDisable = "";
+  	var columnOrder = "";
 
    	// 다국어
    	var Upload_ignore_spaces = "";
@@ -55,6 +56,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
    	var Grid_warning9 = "";
 
 	window.onload = doInit;
+	window.onbeforeunload = doFinish;
 	function doInit() {
 		if(opener.WebSquare.util.isOpera()) {
 			check_fun();
@@ -79,6 +81,10 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
             }
         }
 
+    	useModalDisable = getParameter("useModalDisable");
+    	if(useModalDisable == "true") {
+			opener.WebSquare.layer.showModal();
+    	}
         Upload_ignore_spaces = opener.WebSquare.language.getMessage( "Upload_ignore_spaces" ) || "공백무시";
         Upload_include_spaces = opener.WebSquare.language.getMessage( "Upload_include_spaces" ) || "공백포함";
 		Upload_advanced = opener.WebSquare.language.getMessage( "Upload_advanced" ) || "고급설정";
@@ -239,7 +245,13 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
             }, 1);
         }
 	}
-	
+
+    function doFinish() {
+    	if(useModalDisable == "true") {
+        	opener.WebSquare.layer.hideModal();
+    	}
+    }
+
 	function upload( thisForm ) {
 		try {
 			var filename = document.getElementById("filename").value;

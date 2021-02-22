@@ -185,7 +185,6 @@ var WebSquareLang = {
     Calendar_weekdaynames_6: "토요일",
     Calendar_tooltip: "%1년 %2월 %3일",
     Calendar_select_title: "선택일",
-    Calendar_start: "달력 시작",
 
     //date
     Date_err_1900: "년도는 1900 년도 이상이어야 합니다",
@@ -224,7 +223,6 @@ var WebSquareLang = {
     Window_close: "창닫기",
     Window_popup: "팝업",
     Window_statusMsg: "로딩중입니다.",
-    Window_popup_start: "팝업 시작",
 
     // WindowContainer
     WindowContainer_controlIcon_maximize: "현재 창 최대화/이전 크기로 복원",
@@ -284,7 +282,6 @@ var WebSquareLang = {
     Grid_filter_condition4: "제외할 끝 문자",
     Grid_filter_condition5: "포함",
     Grid_filter_condition6: "포함하지 않음",
-    Grid_filter_condition7: "= (메타문자 사용)",
     Grid_filter_info_Label1: "? 기호를 사용하여 한문자를 나타낼 수 있습니다.",
     Grid_filter_info_Label2: "* 기호를 사용하여 여러 문자를 나타낼 수 있습니다.",
     Grid_filter_confirm: "확인",

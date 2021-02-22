@@ -21,7 +21,6 @@
     var status = "";
     var optionParam = "";
     var maxFileSize = -1;
-    var columnOrder = "";
 
    	// 다국어
    	var Upload_ignore_spaces = "";
@@ -139,7 +138,6 @@
 		expression = getParameter("expression");
 		status = getParameter("status");
 		optionParam = getParameter("optionParam");
-		columnOrder = getParameter("columnOrder");
 
 		document.getElementById("domain").value = domain;
 		document.getElementById("delim").value = delim;
@@ -214,7 +212,6 @@
 		document.getElementById("gridStyle").value = opener.WebSquare.xml.noNameSpaceSerialize(opener[gridID].element);
 		document.getElementById("expression").value = expression;
 		document.getElementById("optionParam").value = optionParam;
-		document.getElementById("columnOrder").value = columnOrder;
 
 		with( document.__uploadForm__ ) {
 			action = actionUrl;
@@ -649,7 +646,6 @@
   <input type="hidden" id="gridStyle" name="gridStyle" value="" />
   <input type="hidden" id="expression" name="expression" value="" />
   <input type="hidden" id="optionParam" name="optionParam" value="" />  
-  <input type="hidden" id="columnOrder" name="columnOrder" value="" />  
 </form>
 
 </body>

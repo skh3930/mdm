@@ -36,6 +36,7 @@
 							<MENU_CD><![CDATA[CODE001]]></MENU_CD>
 							<MENU_NM><![CDATA[공통코드등록]]></MENU_NM>
 							<SORT_ORDER><![CDATA[3]]></SORT_ORDER>
+							<SRC_PATH><![CDATA[/page/code/CODE001.xml]]></SRC_PATH>
 						</w2:row>
 					</w2:data>
 				</w2:dataList>
@@ -269,45 +270,19 @@
 		};
 		var menuList = dlt_menu.getMatchedJSON("MENU_CD", menuCode, true);
 		if (menuList && menuList.length > 0) {
-			dma_shortcut.set("PROGRAM_CD", menuList[0]["PROGRAM_CD"]);
-			var searchCodeGrpOption = { id : "sbm_selectShortcutList", action : "/main/selectShortcutList", 
-									target : '', method : "post",
-									mediatype : "application/json", mode : "asynchronous", isShowMeg : false,
-									submitDoneHandler : function(e) {
-										var rsMsg = e.responseJSON.rsMsg;
-										if (rsMsg.statusCode == "S") {
-											var searchShortcutList = e.responseJSON.dlt_shortcutList;
-											for (var i = 0; i < searchShortcutList.length; i++) {
-												var isExistRow = com.dataListFilter("dlt_shortcutList", 
-																	"PROGRAM_CD == '"+searchShortcutList[i]["PROGRAM_CD"]+"' && COMPLEX_KEY == '"+searchShortcutList[i]["COMPLEX_KEY"]+"' && LAST_KEY == '"+searchShortcutList[i]["LAST_KEY"]+"'", false);
-												if (isExistRow && isExistRow.length > 0) {
-													dlt_shortcutList.setRowJSON(0, searchShortcutList[i], true);
-												} else {
-													var idx = dlt_shortcutList.insertRow();
-													dlt_shortcutList.setRowJSON(idx, searchShortcutList[i], true);
-												}
-											}
-											dlt_shortcutList.removeColumnFilterAll();
-											dlt_shortcutList.reform();
-										}
+			dlt_shortcutList.removeColumnFilterAll();
+			dlt_shortcutList.reform();
+	
+			scwin.openMenu(scwin._menuRelation["menuNm"], scwin._menuRelation["menuUrl"], scwin._menuRelation["menuCode"]);
+			scwin.addHistory(scwin._menuRelation["menuNm"], scwin._menuRelation["menuUrl"], scwin._menuRelation["menuCode"]);
+			gen_history.removeClass("hide");
+			scwin.historyResize();
 
-										scwin.openMenu(scwin._menuRelation["menuNm"], scwin._menuRelation["menuUrl"], scwin._menuRelation["menuCode"]);
-										scwin.addHistory(scwin._menuRelation["menuNm"], scwin._menuRelation["menuUrl"], scwin._menuRelation["menuCode"]);
-										gen_history.removeClass("hide");
-										scwin.historyResize();
-										
-										if ($p.top().scwin.isMobileSize() == true) {
-											$p.top().wfm_header.getWindow().scwin.toggleMenu();
-										}
-										
-										//treeview에서 클릭한 경우는 find를 하지 않는다.
-										if (!skipType || skipType !== "Tree") {
-											trv_menu.findNodeByValue(scwin._menuRelation["menuCode"], true);
-										}
-										delete scwin._menuRelation;
-									}
-			};
-			com.executeSubmission_dynamic(searchCodeGrpOption, {"dma_shortcut" : dma_shortcut.getJSON()});
+			//treeview에서 클릭한 경우는 find를 하지 않는다.
+			if (!skipType || skipType !== "Tree") {
+				trv_menu.findNodeByValue(scwin._menuRelation["menuCode"], true);
+			}
+			delete scwin._menuRelation;
 		}
 	}
 

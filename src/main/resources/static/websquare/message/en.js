@@ -98,7 +98,7 @@ var WebSquareLang = {
 
     E_dc_duplicated_Msg: "id[%1] is duplicated. The existing %2 has been deleted and  newly created.",
 
-    E_comp_duplicated_Msg: "id[%1] is duplicated. Check the source code.",
+    E_comp_duplicated_Msg: "id[%1] is duplicated. The existing %2 has been deleted and newly created",
 
     //logMsg.html
     E_logMsg_LogInfo: "Log Information.",
@@ -186,7 +186,6 @@ var WebSquareLang = {
     Calendar_weekdaynames_6: "Saturday",
     Calendar_tooltip: "%2-%3-%1",
     Calendar_select_title: "selected date",
-    Calendar_start: "calendar start",
 
     //date
     Date_err_1900: "Year starts from 1900.",
@@ -225,7 +224,6 @@ var WebSquareLang = {
     Window_close: "Close",
     Window_popup: "Popup",
     Window_statusMsg: "Loading...",
-    Window_popup_start: "popup start",
 
     // WindowContainer
     WindowContainer_controlIcon_maximize: "Maximize/Restore",
@@ -283,7 +281,6 @@ var WebSquareLang = {
     Grid_filter_condition4: "End character to be excluded",
     Grid_filter_condition5: "Include",
     Grid_filter_condition6: "Exclude",
-    Grid_filter_condition7: "= (Metacharacter)",
     Grid_filter_info_Label1: "? Symbol can represent a single character.",
     Grid_filter_info_Label2: "* Symbol can represent multiple characters.",
     Grid_filter_confirm: "OK",

@@ -15,22 +15,11 @@
 				var prsMsg = parent.WebSquare.layer.processMsg;
 				document.getElementById("processMsgLayer").innerHTML = prsMsg;
 				document.getElementById("abortButton").style.display = "none";
-				document.getElementById("hideButton").style.display = "none";
-				
 				if( window.processKey ) {
 					clearInterval( window.processKey );
 				}
 
 				window.processKey = setInterval( function(){ setColor() } , 500 );
-
-				var hideTrigger = parent.WebSquare.layer.hideTrigger;
-				if(hideTrigger === "true"){
-
-					document.getElementById("hideButton").style.display = "block";
-					document.getElementById("hideButton").onclick = function(){
-						parent.WebSquare.layer.hideProcessMessage();
-					}
-				}
 
 				// WEF-125 [새마을금고] Submission abort 기능 추가
 				// abortTrigger 클릭시 현재 통신 중인 processMsg 설정된 모든 submission을 abort한다.
@@ -68,7 +57,6 @@
 	<div class="ly_loading">
 		<div id="processMsgLayer" class="pro_loading" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;width:200px;"></div>
 		<img src="images/progressingbar.gif" width="267px" height="23px" class="loading_bar" alt="로딩중">
-		<input id='hideButton' type='button' style="position:absolute;top:20px;right:14px;height:20px;text-align:center;word-wrap:break-word;display:none;" value="창닫기" />
 		<input id='abortButton' type='button' style="position:absolute;top:20px;right:14px;height:20px;text-align:center;word-wrap:break-word;display:none;" value="취소" />
 	</div>
 </body>
