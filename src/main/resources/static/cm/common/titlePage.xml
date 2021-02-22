@@ -85,11 +85,11 @@
 		
 	scwin.wfTitleFav_alertPageInfo = function() {
 		var pageUrl = $p.parent().$p.getFrame().getSrc();
-		com.alert("[" + wfTitleFav_txt_H1.getValue() + "] 페이지의 파일 경로는 다음과 같습니다.<br/>" + pageUrl);
+		com.alert("[" + wfTitleFav_txt_H1.getValue() + "] " + pageUrl);
 	};
 	
 	/**
-	 * 화면을 갱신한다.
+	 * 화면을 갱신한다. 
 	 */
 	scwin.wfTitleFav_reload = function() {
 		if (com.getFrameMode() === "wframe") {

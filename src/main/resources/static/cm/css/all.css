@@ -123,7 +123,7 @@ a:hover,a:active,a:focus{text-decoration:none}
 
 .ly_col_cont{display:block;position:relative;min-width:15px;min-height:15px}
 
-.pgtitlebox{position:relative;min-height:10px;padding:0;margin:20px 0 10px;overflow:hidden;}
+.pgtitlebox{position:relative;min-height:10px;padding:0;margin-bottom:10px;overflow:hidden;}
 .pgtitlebox .wf_contNavi{float:right;line-height:16px;}
 .pgtitlebox .wf_contHeader{float:left;}
 .pgtitlebox .pg_tt{display:inline-block;color:#333;font-size:16px;font-weight:600;margin-right:6px;}
