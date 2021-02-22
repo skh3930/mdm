@@ -48,7 +48,7 @@ body {
 .btn_aside{position:absolute;left:10px;top:8px;width:26px;height:26px;padding:2px;margin:0;;font-size:0;line-height:0;text-indent:-9999px;overflow:hidden;background:url(/cm/images/inc/bg_btn_side_slide.png) 50% 50% no-repeat}
 .btn_aside:hover {background:url(/cm/images/inc/bg_btn_side_slide.png) 50% 50% no-repeat #7f848c;border-radius:15px;}
 /* .main_container .btn_aside{position:absolute;left:214px;top:50%;width:10px;height:80px;margin-top:-40px;text-indent:-9999px; background:url("/cm/images/inc/bg_btn_toggle.gif") no-repeat; display:block; overflow:hidden;}*/
-.main_side{position:absolute; left:0; top:0; bottom:0; width:212px; background:#eaebef;}
+.main_side{position:absolute; left:0; top:0; bottom:0; width:212px;}
 .m_contents{position:absolute; left:214px; right:0; top:0; bottom:0px; overflow: hidden;}
 .m_contents .mdi{position:absolute;left:0;top:0;right:0;bottom:0}
 .m_contents .bot_option{height:36px;position:absolute;bottom:0;left:0;right:0;background: #f3f3f3;border:1px solid #8e8e8e;z-index:1000;}
@@ -264,12 +264,6 @@ body {
 
 /* Side */
 .sidebox{position: absolute; left: 0; right: 0; top: 0; bottom: 0; width:214px;}
-.sidebox .aside_top {position:relative;width:214px;height:28px;padding:0;margin:0;background:url(/cm/images/inc/bg_userbox.gif) no-repeat;}
-.sidebox .aside_top .userbox{position:absolute;left:10px;top:7px;height:15px;width:128px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
-.sidebox .aside_top .userbox .nm_tt{float:none!important; display:inline;padding:0;margin:0;line-height:15px;padding:0;font-size:12px;color:#424343;font-weight:bold}
-.sidebox .aside_top .userbox .nm_tt.stg{color:#0a776d}
-.sidebox .aside_top .logout {position:absolute;top:6px;right:25px;width:51px; height:18px; text-indent:-9999px; background:url(/cm/images/inc/bg_btn_logout.gif) no-repeat; overflow:hidden;}
-.sidebox .aside_top .setup {position:absolute;top:8px;right:4px;width:16px; height:17px; text-indent:-9999px; background:url(/cm/images/inc/bg_btn_setup.gif) no-repeat;overflow:hidden;}
 
 .sidebox .aside_tab{position:absolute;left:0;top:36px;bottom:0;width:214px;padding:0;margin:0; background:#fff}
 .sidebox .as_tab {position:relative;width:214px;height:36px;overflow:hidden;background:url(/cm/images/inc/bg_side_mn.png) no-repeat; }
@@ -286,20 +280,6 @@ body {
 
 .sidebox .lnb{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden;}
 .sidebox .lnb .w2switch_case{position:absolute; left:0; right:0; top:0px; bottom:42px;}
-
-.sidebox .sidelist{display:block;position:absolute;left:10px;right:11px;bottom:10px;height:120px;margin:10px 0 0;;background:#fff;z-index:120}
-.sidebox .studylist{position:absolute;left:0;right:0;top:0;bottom:0}
-.sidebox .studylist .study_title{width:168px;height:15px;padding:4px 0 5px 23px;margin:0;line-height:15px;font-size:12px;color:#fff;background:url(/cm/images/inc/bg_side_list.gif) no-repeat;background-size:100% 100%;}
-.sidebox .studylist .study_cont{position:relative;max-height:99px;border:1px solid #ccc;overflow:auto}
-.sidebox .studylist .study_cont .sty_link{display:block;height:19px;line-height:19px;padding:0 0 0 10px;color:#555;border-top:1px solid #ccc;background:url(/cm/images/inc/bg_study_bu.gif) no-repeat 5px 7px;text-overflow:ellipsis;}
-.sidebox .studylist .study_cont .sty_link:first-child{border-top:0}
-.sidebox .studylist .study_cont .sty_link:hover{text-decoration:underline}
-.sidebox .studylist .setup {position:absolute;top:4px;right:4px;width:16px; height:17px; text-indent:-9999px; background:url(/cm/images/inc/bg_btn_setup.gif) no-repeat;overflow:hidden;}
-
-.sidebox .aside_bottom {position:absolute; left:0; right:0; bottom:0; height:39px; background:url(/cm/images/inc/bg_aside_bottom.png) left bottom no-repeat;z-index:120;}
-.sidebox .aside_bottom .w2selectbox {margin:10px 0 0 13px; width:187px; height:21px; border:0; color:#3b3b3b; background-color:transparent;}/* 2015-04-13 ### */
-.sidebox .aside_bottom a.btn_use_write{position:absolute;top:5px;right:5px;width:36px;height:24px;display:block;background:url(/cm/images/btn/btn_aside_write.png) no-repeat;}/* 2015-04-13 ### */
-.sidebox .aside_bottom .w2selectbox .w2selectbox_col_button{background-image:url(/cm/images/inc/select_arrow.gif);}
 
 /*historyly */
 .box_history{position:absolute;left:6px;right:6px;bottom:10px;height:24px;background:#fff;z-index:120;overflow:hidden;}
