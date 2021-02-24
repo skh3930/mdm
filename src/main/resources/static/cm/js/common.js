@@ -2059,9 +2059,9 @@ com.validateGroup = function(grpObj, valInfoArr, tacObj, tabId) {
 				dataCollection = WebSquare.util.getComponentById(dataObjInfo.runtimeDataCollectionId);
 				columnId = dataObjInfo.columnId;
 			}
-
+			
 			if ((dataCollection !== null) && (dataCollection.getObjectType() === "dataMap")) {
-				value = dataCollection.get(dataObjInfo.columnId).trim();
+				value = dataCollection.get(dataObjInfo.columnId).toString().trim();
 			} else {
 				var tempIdArr = obj.getID().split("_");
 				if (obj.getPluginName() !== "editor") {

@@ -2,7 +2,6 @@ package com.kyobo.mdm.code.controller;
 
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +20,10 @@ public class CodeController {
 		ResultVO result = new ResultVO();
 		try {
 			Map code = (Map) param.get("dma_code");
-			//ÀúÀå Ã³¸®
-			result.setMsg(result.STATUS_SUCESS, "Á¤»ó Ã³¸®µÇ¾ú½À´Ï´Ù.");
+			//ì €ì¥ ì²˜ë¦¬
+			result.setMsg(result.STATUS_SUCESS, "ì •ìƒ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch (Exception e) {
-			result.setMsg(result.STATUS_ERROR, "Ã³¸® µµÁß ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.", e);
+			result.setMsg(result.STATUS_ERROR, "ì²˜ë¦¬ ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.", e);
 			e.printStackTrace();
 		}
 		return result.getResult();
@@ -34,11 +33,12 @@ public class CodeController {
 	public Map<String, Object> getCodeById(@PathVariable("id") String id) {
 		ResultVO result = new ResultVO();
 		try {
+			//code ë°›ì•„ì™€ì„œ ë³´ë‚¼ ì˜ˆì •
 			result.setData("dma_code", new CodeVO(id));
 			
-			result.setMsg(result.STATUS_SUCESS, "Á¤»ó Ã³¸®µÇ¾ú½À´Ï´Ù.");
+			result.setMsg(result.STATUS_SUCESS, "ì •ìƒ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch (Exception e) {
-			result.setMsg(result.STATUS_ERROR, "Ã³¸® µµÁß ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.", e);
+			result.setMsg(result.STATUS_ERROR, "ì²˜ë¦¬ ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.", e);
 			e.printStackTrace();
 		}
 		return result.getResult();

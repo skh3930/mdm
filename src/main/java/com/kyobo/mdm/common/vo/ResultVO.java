@@ -8,34 +8,34 @@ public class ResultVO {
 
 	private Map<String, Object> resultMap = new HashMap<String, Object>();
 
-	// ¼º°ø¸Ş¼¼Áö
+	// ì„±ê³µë©”ì„¸ì§€
 	public final static String STATUS_SUCESS = "S";
 
-	// ¼º°ø ¸Ş¼¼Áö
-	public final static String STATUS_SUCESS_MESSAGE = "Á¤»ó Ã³¸®µÇ¾ú½À´Ï´Ù.";
+	// ì„±ê³µ ë©”ì„¸ì§€
+	public final static String STATUS_SUCESS_MESSAGE = "ì •ìƒ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.";
 
-	// ¿À·ù¸Ş¼¼Áö
+	// ì˜¤ë¥˜ë©”ì„¸ì§€
 	public final static String STATUS_ERROR = "E";
 
-	// ±âº» ¿¡·¯ »ó¼¼ ÄÚµå
+	// ê¸°ë³¸ ì—ëŸ¬ ìƒì„¸ ì½”ë“œ
 	public final static String STATUS_ERROR_DEFAULT_DETAIL_CODE = "E9999";
 
-	// ¿À·ù¸Ş¼¼Áö
-	public final static String STATUS_ERROR_MESSAGE = "Ã³¸® µµÁß ¿À·ù°¡ ¹ß»ıµÇ¾ú½À´Ï´Ù.";
+	// ì˜¤ë¥˜ë©”ì„¸ì§€
+	public final static String STATUS_ERROR_MESSAGE = "ì²˜ë¦¬ ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒë˜ì—ˆìŠµë‹ˆë‹¤.";
 
-	// °æ°í¸Ş¼¼Áö
+	// ê²½ê³ ë©”ì„¸ì§€
 	public final static String STATUS_WARNING = "W";
 
-	// °æ°í¸Ş¼¼Áö
-	public final static String STATUS_WARNING_MESSAGE = "Ã³¸® µµÁß ¿À·ù°¡ ¹ß»ıµÇ¾ú½À´Ï´Ù.";
+	// ê²½ê³ ë©”ì„¸ì§€
+	public final static String STATUS_WARNING_MESSAGE = "ì²˜ë¦¬ ë„ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒë˜ì—ˆìŠµë‹ˆë‹¤.";
 
-	// ±âº»(map Å¸ÀÔ) À¥½ºÄù¾î view
+	// ê¸°ë³¸(map íƒ€ì…) ì›¹ìŠ¤í€˜ì–´ view
 	public final static String VIEW_DEFAULT = "wqView";
 
-	// °á°ú°ª¿¡ ´ëÇÑ ¸Ş¼¼Áö key¸í
+	// ê²°ê³¼ê°’ì— ëŒ€í•œ ë©”ì„¸ì§€ keyëª…
 	public final static String MESSAGE_KEY = "rsMsg";
 
-	// viewTypeÀÌ VIEW_STRING ÀÏ °æ¿ì ÂüÁ¶ÇÏ´Â key
+	// viewTypeì´ VIEW_STRING ì¼ ê²½ìš° ì°¸ì¡°í•˜ëŠ” key
 	public final static String RESULT_KEY_DEFAULT = "result";
 
 	public void setData(String id, String data) {
@@ -62,9 +62,6 @@ public class ResultVO {
 		return resultMap;
 	}
 
-	/**
-	 * ¸Ş¼¼Áö Ã³¸® - »óÅÂ ±âº» ¸Ş¼¼Áö Ã³¸®
-	 */
 	public void setMsg(String status) {
 		String msg = "";
 		if (status == STATUS_ERROR) {
@@ -77,16 +74,10 @@ public class ResultVO {
 		setMsg(status, msg);
 	}
 
-	/**
-	 * ¸Ş¼¼Áö Ã³¸®
-	 */
 	public void setMsg(String status, String message) {
 		setMsg(status, message, null);
 	}
 
-	/**
-	 * ¸Ş¼¼Áö Ã³¸®
-	 */
 	public void setMsg(String status, String message, Exception ex) {
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -109,16 +100,10 @@ public class ResultVO {
 		resultMap.put(MESSAGE_KEY, result);
 	}
 
-	/**
-	 * ¿À·ù ¸Ş¼¼Áö Ã³¸®
-	 */
 	public void setErrorMsg(String errorCode, String message) {
 		setErrorMsg(errorCode, message, null);
 	}
 
-	/**
-	 * ¿À·ù ¸Ş¼¼Áö Ã³¸®
-	 */
 	public void setErrorMsg(String errorCode, String message, Exception ex) {
 		Map<String, Object> result = new HashMap<String, Object>();
 
