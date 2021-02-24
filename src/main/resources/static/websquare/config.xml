@@ -129,16 +129,17 @@
         <makeGlobalObject value="true"/>
     </workflow>
 
+
     <submission>
-        <processMsg value=""/>
-        <showSubmissionTime value="true"/>
-        <errorHandler value="gcm._sbm_errorHandler"/>
-        <preSubmitFunction value="gcm._sbm_preSubmission"/>
-        <callbackSubmitFunction value="gcm._sbm_defCallbackSubmission"/>
-        <!-- parameter이름=value 형태로 보내고자 할때 보낼 parameter이름 -->
-        <requestID value=""/>
-        <makeGlobalObject value="true"/>
-    </submission>
+		<processMsg value=""/>
+		<showSubmissionTime value="true"/>
+		<preSubmitFunction value="gcm._sbm_preSubmission"/>
+		<callbackSubmitFunction value="gcm._sbm_defCallbackSubmission"/>
+		<submitErrorHandler value="gcm._sbm_errorHandler" mode="only" />
+		<makeGlobalObject value="true"/>
+		<!-- parameter이름=value 형태로 보내고자 할때 보낼 parameter이름 -->
+		<requestID value=""/>
+	</submission>
     
 
     <!-- 

@@ -33,6 +33,19 @@
 	scwin.btn_logout_onclick = function(e) {
 		com.logout();
 	};
+	
+	scwin.btn_NotiClose_onclick = function() {
+		if (txa_messageDetail.hasClass("show")) {
+			$(".notice").animate({ "bottom" : "-300px", "opacity" : "0" }, 700);
+		} else {
+			$(".notice").animate({ "bottom" : "-42px", "opacity" : "0" }, 1000);
+		}
+	};
+	
+	scwin.btn_notiMore_onclick = function() {
+		txa_messageDetail.toggleClass("show");
+	};
+	
 
 
 ]]></script>
@@ -58,6 +71,19 @@
 			</xf:group>
 		</xf:group>
 		<xf:group id="grp_Notice" style="" class="notice">
+			<xf:group id="notice_Info" style="" class="info">
+				<w2:span id="tbx_status" style="font-weight: bold;text-transform: uppercase;" label="ERROR"></w2:span>
+				<w2:textbox id="tbx_message" style="display:inline;" label="메뉴정보 조회도중 오류가 발생하였습니다."></w2:textbox>
+				<w2:anchor id="btn_NotiClose" style="position:absolute; right:10px; top:10px; font-size: 15px;	font-weight: bold;	text-shadow: 0 1px 0 #fff;	opacity: .3;line-height: 15px;" outerDiv="false"
+					ev:onclick="scwin.btn_NotiClose_onclick">
+					<xf:label><![CDATA[x]]></xf:label>
+				</w2:anchor>
+				<w2:anchor id="btn_notiMore" outerDiv="false"
+					style="position:absolute; right:23px; top:12px; font-size: 15px;	font-weight: bold;	text-shadow: 0 1px 0 #fff;	opacity: .3;	font-family: inherit;line-height: 15px;" ev:onclick="scwin.btn_notiMore_onclick">
+					<xf:label><![CDATA[+]]></xf:label>
+				</w2:anchor>
+				<xf:textarea id="txa_messageDetail" style="width: 99%;height:200px;margin:10px 0;color:red;display:none;"></xf:textarea>
+			</xf:group>
 		</xf:group>
 	</body>
 </html>

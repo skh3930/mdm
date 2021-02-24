@@ -386,7 +386,7 @@ gcm._sbm_preSubmission = function(sbmObj) {
  * @author InswaveSystems
  */
 gcm._sbm_defCallbackSubmission = function(resObj, subObj) {
-
+	
 	var scopeCom = gcm._getScope(subObj).com;
 
 	// server와 연결을 할 수 없을 경우 responseStatusCode가 0으로 발생.

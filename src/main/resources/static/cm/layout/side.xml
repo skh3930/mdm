@@ -38,13 +38,13 @@
 							<MENU_CD><![CDATA[CODE001]]></MENU_CD>
 							<MENU_NM><![CDATA[공통코드등록]]></MENU_NM>
 							<SORT_ORDER><![CDATA[]]></SORT_ORDER>
-							<SRC_PATH><![CDATA[/page/code/CODE001.xml]]></SRC_PATH>
+							<SRC_PATH><![CDATA[/page/code/SCR_MD_C_0100.xml]]></SRC_PATH>
 							<MENU_LEVEL><![CDATA[3]]></MENU_LEVEL>
 						</w2:row>
 						<w2:row>
 							<MENU_CD><![CDATA[CODE002]]></MENU_CD>
 							<MENU_NM><![CDATA[공통코드조회]]></MENU_NM>
-							<SRC_PATH><![CDATA[/page/code/CODE002.xml]]></SRC_PATH>
+							<SRC_PATH><![CDATA[/page/code/SCR_MD_C_0120.xml]]></SRC_PATH>
 							<MENU_LEVEL><![CDATA[3]]></MENU_LEVEL>
 						</w2:row>
 					</w2:data>

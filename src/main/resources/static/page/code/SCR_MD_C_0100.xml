@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/cm/css/all.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:w2="http://www.inswave.com/websquare"
+	xmlns:xf="http://www.w3.org/2002/xforms">
+	<head meta_vertical_guides="" meta_horizontal_guides="180">
+		<!-- 
+		#####################################################################
+		파일명 : HM001M01.xml
+		프로그램명 : 조직 관리 
+		설 명 : 조직을 관리(등록,수정,삭제)하는 화면
+		작성자 : Inswave Systems
+		작성일 : 2016.10.24
+		
+		수정일자	  수정자			 수정내용
+		=====================================================================
+		2016.10.24	Inswave Systems	최초작성
+		2018.01.26	Inswave Systems	WebSquare5 SP2 기능을 적용하도록 소스 업그레이드
+		2018.11.12	Inswave Systems	WebSquare5 SP3 기능을 적용하도록 소스 업그레이드
+		#####################################################################
+		-->
+		<w2:type>DEFAULT</w2:type>
+		<w2:buildDate />
+		<xf:model>
+			<xf:instance>
+				<data xmlns="" />
+			</xf:instance>
+			<w2:dataCollection baseNode="map">
+				<w2:dataMap baseNode="map" id="dma_code">
+					<w2:keyInfo>
+						<w2:key id="codeId" name="코드ID" dataType="text"></w2:key>
+						<w2:key id="codeIdNm" name="코드명" dataType="text"></w2:key>
+						<w2:key id="codeLength" name="코드길이" dataType="number"></w2:key>
+						<w2:key id="codeIdDesc" name="코드ID설명" dataType="text"></w2:key>
+						<w2:key id="tableNm" name="테이블명" dataType="text"></w2:key>
+						<w2:key id="codeRltn" name="코드관계" dataType="text"></w2:key>
+						<w2:key id="prntCodeId" name="부모코드ID" dataType="text"></w2:key>
+						<w2:key id="prntCodeVal" name="부모코드값" dataType="text"></w2:key>
+						<w2:key id="codeVal" name="코드값" dataType="text"></w2:key>
+						<w2:key id="codeValNm" name="코드값명" dataType="text"></w2:key>
+						<w2:key id="priority" name="우선순위" dataType="text"></w2:key>
+						<w2:key id="codeValDesc" name="코드값설명" dataType="text"></w2:key>
+					</w2:keyInfo>
+					<w2:data use="true">
+						<codeId><![CDATA[ ]]></codeId>
+						<codeIdNm><![CDATA[ ]]></codeIdNm>
+						<codeLength><![CDATA[ ]]></codeLength>
+						<codeIdDesc><![CDATA[ ]]></codeIdDesc>
+						<tableNm><![CDATA[ ]]></tableNm>
+						<codeRltn><![CDATA[ ]]></codeRltn>
+						<prntCodeId><![CDATA[ ]]></prntCodeId>
+						<prntCodeVal><![CDATA[ ]]></prntCodeVal>
+						<codeVal></codeVal>
+						<codeValNm></codeValNm>
+						<priority></priority>
+						<codeValDesc></codeValDesc>
+					</w2:data>
+				</w2:dataMap>
+			</w2:dataCollection>
+			<w2:workflowCollection></w2:workflowCollection>
+			<xf:submission id="sbm_saveCode" ref="data:json,dma_code" target="" action="/code" method="post" mediatype="application/json"
+				encoding="UTF-8" instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg="" ev:submit=""
+				ev:submitdone="scwin.sbm_saveCode_submitdone" ev:submiterror="" abortTrigger="">
+			</xf:submission>
+			<xf:submission id="sbm_searchCode" ref="" target="data:json,dma_code" action="/code/1" method="get"
+				mediatype="application/json" encoding="UTF-8" instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg=""
+				ev:submit="" ev:submitdone="" ev:submiterror="" abortTrigger="">
+			</xf:submission>
+		</xf:model>
+		<script type="text/javascript" lazy="false"><![CDATA[
+
+	scwin.onpageload = function() {
+
+	};
+	
+	scwin.onpageunload = function() {
+
+	};
+
+	scwin.btn_reset_onclick = function() {
+		dma_code.undo();
+	};
+	
+	scwin.btn_save_onclick = function() {
+		var valInfo = [{ id : "codeId", mandatory : true }];
+		
+		if (com.validateGroup(grp_code, valInfo)) {
+			com.executeSubmission(sbm_saveCode);
+		}
+	};
+	
+	scwin.btn_searchCodeId_onclick = function() {
+		com.executeSubmission(sbm_searchCode);
+	};
+	
+	scwin.sbm_saveCode_submitdone = function(e) {
+		var sCode = com.getResultCode(e);
+		if (sCode == "S") {
+			dma_code.undo();
+		}
+	};
+	]]></script>
+	</head>
+	<body ev:onpageload="scwin.onpageload" ev:onpageunload="scwin.onpageunload">
+		<xf:group class="contentWrap" id="" style="">
+			<w2:wframe id="" style="" src="/cm/common/titlePage.xml" scope="true"></w2:wframe>
+			<xf:group id="" style="" class="section">
+				<xf:group id="" style="" class="defaultbox">
+					<w2:textbox id="" style="" class="df_tt fl" label="코드그룹"></w2:textbox>
+					<xf:group id="" style="height:22px;" class="fr">
+						<xf:group id="" style="" class="ml5 fr">
+							<w2:anchor id="btn_delOrganization" style="display:none;" clickEventElement="outerDiv"
+								ev:onclick="scwin.btn_delOrganization_onclick" class="btn_gcm" outerDiv="true">
+								<xf:label><![CDATA[삭제]]></xf:label>
+							</w2:anchor>
+							<w2:anchor id="btn_reset" style="" clickEventElement="outerDiv" ev:onclick="scwin.btn_reset_onclick"
+								class="btn_gcm" outerDiv="true">
+								<xf:label><![CDATA[초기화(F2)]]></xf:label>
+							</w2:anchor>
+							<w2:anchor id="btn_save" style="" clickEventElement="outerDiv" ev:onclick="scwin.btn_save_onclick"
+								class="btn_gcm" outerDiv="true">
+								<xf:label><![CDATA[저장(F6)]]></xf:label>
+							</w2:anchor>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+			<xf:group id="grp_code" style="" class="section">
+				<xf:group id="grd_codeGrp" style="width:100%;" class="w2tb tb" tagname="table" adaptive="layout">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:130px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:130px;" tagname="col"></xf:group>
+						<xf:group tagname="col"></xf:group>
+						<xf:group tagname="col" style="width:130px;"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group style="" class="w2tb_th req" tagname="th">코드ID</xf:group>
+						<xf:group style="" class="w2tb_td" tagname="td">
+							<xf:input id="ibx_codeId" ref="data:dma_code.codeId" style="height:24px;width:80%;" disabled="" mandatory="" maxByteLength=""></xf:input>
+							<w2:anchor class="btn_gcm" clickEventElement="outerDiv" ev:onclick="scwin.btn_searchCodeId_onclick" id="btn_searchCodeId"
+								outerDiv="true" style="">
+								<xf:label><![CDATA[조회]]></xf:label>
+							</w2:anchor>
+						</xf:group>
+						<xf:group class="w2tb_th" tagname="th">코드ID명</xf:group>
+						<xf:group class="w2tb_td" tagname="td">
+							<xf:input id="ibx_codeIdNm" ref="data:dma_code.codeIdNm" style="height:24px;" class=""
+								mandatory="false">
+							</xf:input>
+						</xf:group>
+						<xf:group tagname="th" class="w2tb_th">코드길이<w2:attributes></w2:attributes></xf:group>
+						<xf:group tagname="td" class="w2tb_td">
+							<w2:attributes></w2:attributes>
+							<xf:input class="" id="ibx_codeLength" mandatory="false" ref="data:dma_code.codeLength"
+								style="height:24px;" initValue="">
+							</xf:input>
+						</xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group style="" class="w2tb_th" tagname="th">코드ID설명</xf:group>
+						<xf:group style="" class="w2tb_td" tagname="td">
+							<w2:attributes>
+								<w2:colspan>3</w2:colspan>
+								<w2:rowspan>1</w2:rowspan>
+							</w2:attributes>
+							<xf:input id="ibx_codeIdDesc" ref="data:dma_code.codeIdDesc" style="height:24px;" initValue=""></xf:input>
+						</xf:group>
+						<xf:group tagname="th" class="w2tb_th">
+							테이블명
+							<w2:attributes></w2:attributes>
+						</xf:group>
+						<xf:group tagname="td" class="w2tb_td">
+							<w2:attributes></w2:attributes>
+							<xf:input class="" id="ibx_tableNm" initValue="" mandatory="" ref="data:dma_code.tableNm"
+								style="height:24px;" maxByteLength="">
+							</xf:input>
+						</xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group style="" class="w2tb_th" tagname="th">코드관계</xf:group>
+						<xf:group style="" class="w2tb_td" tagname="td">
+							<xf:select1 allOption="" appearance="minimal" chooseOption="" chooseOptionLabel="&amp;nbsp;" direction="auto"
+								disabled="true" disabledClass="w2selectbox_disabled" displayMode="label" id="sbx_codeRltn" optionOrder="false"
+								ref="data:dma_code.codeRltn" renderType="component" style="height:24px;" submenuSize="auto">
+								<xf:choices></xf:choices>
+							</xf:select1>
+						</xf:group>
+						<xf:group class="w2tb_th" tagname="th">코드관계상위코드ID</xf:group>
+						<xf:group class="w2tb_td" tagname="td">
+							<xf:input id="ibx_prntCodeId" ref="data:dma_code.prntCodeId" style="height:24px;width: 80%;"
+								disabled="true" initValue="">
+							</xf:input>
+							<w2:anchor class="btn_gcm" clickEventElement="outerDiv" ev:onclick="" id="btn_searchPrntCodeId"
+								outerDiv="true" style="">
+								<xf:label><![CDATA[조회]]></xf:label>
+							</w2:anchor>
+						</xf:group>
+						<xf:group tagname="th" class="w2tb_th" style="">
+							상위코드값
+							<w2:attributes></w2:attributes>
+						</xf:group>
+						<xf:group tagname="td" class="w2tb_td">
+							<w2:attributes></w2:attributes>
+							<xf:select1 allOption="" appearance="minimal" chooseOption="" chooseOptionLabel="&amp;nbsp;" direction="auto"
+								disabled="true" disabledClass="w2selectbox_disabled" displayMode="label" id="sbx_prntCodeVal" optionOrder="false"
+								ref="data:dma_code.prntCodeVal" renderType="component" style="height:24px;" submenuSize="auto">
+								<xf:choices></xf:choices>
+							</xf:select1>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+				<xf:group id="" style="" class="section">
+					<xf:group id="" style="" class="defaultbox">
+						<w2:textbox class="df_tt fl" id="" label="코드상세" style=""></w2:textbox>
+					</xf:group>
+				</xf:group>
+				<xf:group adaptive="layout" class="w2tb tb" id="group5" style="width:100%;" tagname="table">
+					<w2:attributes>
+						<w2:summary></w2:summary>
+					</w2:attributes>
+					<xf:group tagname="colgroup">
+						<xf:group style="width:130px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+						<xf:group style="width:130px;" tagname="col"></xf:group>
+						<xf:group tagname="col"></xf:group>
+						<xf:group style="width:130px;" tagname="col"></xf:group>
+						<xf:group style="" tagname="col"></xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">코드값</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<xf:input disabled="true" id="ibx_codeVal" ref="data:dma_code.codeVal" style="height:24px;"></xf:input>
+						</xf:group>
+						<xf:group class="w2tb_th" tagname="th">코드값명</xf:group>
+						<xf:group class="w2tb_td" tagname="td">
+							<xf:input class="" id="idx_codeValNm" mandatory="false" ref="data:dma_code.codeValNm"
+								style="height:24px;" initValue="">
+							</xf:input>
+						</xf:group>
+						<xf:group class="w2tb_th" tagname="th">우선순위<w2:attributes></w2:attributes></xf:group>
+						<xf:group class="w2tb_td" tagname="td">
+							<w2:attributes></w2:attributes>
+							<xf:input disabled="" id="idx_priority" ref="data:dma_code.priority" style="height:24px;"></xf:input>
+						</xf:group>
+					</xf:group>
+					<xf:group style="" tagname="tr">
+						<xf:group class="w2tb_th" style="" tagname="th">코드값설명</xf:group>
+						<xf:group class="w2tb_td" style="" tagname="td">
+							<w2:attributes>
+								<w2:colspan>5</w2:colspan>
+								<w2:rowspan>1</w2:rowspan>
+							</w2:attributes>
+							<xf:input disabled="" id="idx_codeValDesc" ref="data:dma_code.codeValDesc" style="height:24px"></xf:input>
+						</xf:group>
+					</xf:group>
+				</xf:group>
+			</xf:group>
+		</xf:group>
+	</body>
+</html>

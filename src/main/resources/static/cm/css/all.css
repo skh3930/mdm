@@ -135,7 +135,7 @@ a:hover,a:active,a:focus{text-decoration:none}
 .depthbox a:last-child{font-weight:bold}
 
 .defaultbox{width:100%;min-height:15px; position:relative;margin:0px 0 4px;overflow:hidden;}
-.defaultbox .df_tt{float:left; color:#333;padding:0 0 0 10px;margin-left:5px;font-size:14px;font-weight:600;line-height:15px;background:url(/cm/images/contents/bg_df_tt.gif) no-repeat 0 5px}
+.defaultbox .df_tt{float:left; color:#333;padding:0 0 0 10px;margin:5px 0 0 5px;font-size:14px;font-weight:600;line-height:15px;background:url(/cm/images/contents/bg_df_tt.gif) no-repeat 0 5px}
 .defaultbox .df_total{display:inline-block;color:#3b3b3b;padding:2px 0 1px;font-size:12px;font-weight:600;line-height:15px;}
 .defaultbox .df_total.num{color:#e74c3c;padding:2px 6px 1px}
 .df_etc{margin:15px 0 4px;color:#bd5c10;padding:0 0 1px 20px;font-size:12px;line-height:16px;background:url(/cm/images/contents/bg_df_etc.gif) no-repeat 0 3px}
