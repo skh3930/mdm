@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServletRegistrationConfig
 {
     @Bean
-    public ServletRegistrationBean getServletRegistrationBean()
-    {
+    public ServletRegistrationBean getServletRegistrationBean() {
         ServletRegistrationBean websquareDispatcher = new ServletRegistrationBean(new websquare.http.DefaultRequestDispatcher());
         websquareDispatcher.addUrlMappings("*.wq");
         return websquareDispatcher;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ResultVO {
+public class Result {
 
 	private Map<String, Object> resultMap = new HashMap<String, Object>();
 
@@ -76,6 +76,10 @@ public class ResultVO {
 
 	public void setMsg(String status, String message) {
 		setMsg(status, message, null);
+	}
+	
+	public void setMsg(String status, Exception ex) {
+		setMsg(status, STATUS_ERROR_MESSAGE , null);
 	}
 
 	public void setMsg(String status, String message, Exception ex) {

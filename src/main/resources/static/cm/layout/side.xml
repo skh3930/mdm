@@ -9,8 +9,7 @@
 				<data xmlns="" />
 			</xf:instance>
 			<w2:dataCollection baseNode="map">
-				<w2:dataList id="dlt_menu" baseNode="list" saveRemovedData="true" repeatNode="map"
-					ev:ondataload="scwin.dlt_menu_ondataload">
+				<w2:dataList id="dlt_menu" baseNode="list" saveRemovedData="true" repeatNode="map">
 					<w2:columnInfo>
 						<w2:column id="MENU_CD" name="메뉴코드" dataType="text"></w2:column>
 						<w2:column id="MENU_NM" name="메뉴명" dataType="text"></w2:column>
@@ -149,9 +148,9 @@
 				mediatype="application/json" encoding="UTF-8" instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg=""
 				ev:submit="" ev:submitdone="" ev:submiterror="">
 			</xf:submission>
-			<xf:submission id="sbm_initSide" ref="" target="" action="" method="post" mediatype="application/json" encoding="UTF-8"
-				instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg="" ev:submit="" ev:submitdone=""
-				ev:submiterror="">
+			<xf:submission id="sbm_initSide" ref="" target="data:json,dlt_menu" action="/menu" method="get" mediatype="application/json" encoding="UTF-8"
+				instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg="" ev:submit="" ev:submitdone="scwin.initDataCallback"
+				ev:submiterror="" abortTrigger="">
 			</xf:submission>
 			<xf:submission id="sbm_updateFav" ref="data:json,dma_fav" target="" action="/main/updateFav" method="post"
 				mediatype="application/json" encoding="UTF-8" instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg=""
@@ -192,12 +191,14 @@
 	};
 	
 	scwin.fn_getInitData = function() {
-//		var searchCodeGrpOption = { id : "sbm_InitCont", action : "/main/init", 
-//									target : 'data:json, ["dlt_menu", "dlt_fav", "dma_defInfo", "dlt_programAuthority"]', method : "post",
-//									mediatype : "application/json", mode : "asynchronous", isShowMeg : false,
-//									submitDoneHandler : scwin.initDataCallback };
-//		com.executeSubmission_dynamic(searchCodeGrpOption);
+		var searchCodeGrpOption = { id : "sbm_InitCont", action : "/menu", 
+									target : 'data:json, ["dlt_menu"]', method : "get",
+									mediatype : "application/json", mode : "asynchronous", isShowMeg : false,
+									submitDoneHandler : scwin.initDataCallback };
+		//com.executeSubmission_dynamic(searchCodeGrpOption);
+		
 		scwin.initDataCallback();
+		//com.executeSubmission(sbm_initSide);
 	};
 
 	scwin.initDataCallback = function() {
@@ -408,10 +409,6 @@
 		return val;
 	};
 	
-	scwin.dlt_menu_ondataload = function() {
-		$p.top().scwin.setHeaderMenu();
-	};
-	
 	//즐겨찾기 메뉴 node 클릭 시 
 	scwin.btn_FavMenuNode_onclick = function() {
 		var tLabel = this.getSelectedLabel(); // 선택된 노드 label값을 가져와서 변수에 담는다.
@@ -575,6 +572,10 @@
 		return (dlt_fav.getMatchedIndex("MENU_CD", menuCode, true)).length;
 	}
 	
+	
+	scwin.initDataCallback = function(e) {
+		
+	};
 	]]></script>
 	</head>
 	<body ev:onpageload="scwin.onpageload" ev:onpageunload="scwin.onpageunload">
