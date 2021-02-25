@@ -1,8 +1,6 @@
-package com.kyobo.mdm.code.service;
+package com.kyobo.mdm.mvc.code.service;
 
 import org.springframework.stereotype.Service;
-
-import com.kyobo.mdm.common.exception.MDMException;
 
 @Service
 public class CodeService {

@@ -1,4 +1,4 @@
-package com.kyobo.mdm.common.controller;
+package com.kyobo.mdm;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

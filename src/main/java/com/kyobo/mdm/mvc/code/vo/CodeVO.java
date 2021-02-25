@@ -1,11 +1,13 @@
-package com.kyobo.mdm.code.vo;
+package com.kyobo.mdm.mvc.code.vo;
 
 import com.kyobo.mdm.common.vo.CommonVO;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class CodeVO extends CommonVO{
+@Setter
+@Getter
+public class CodeVO extends CommonVO {
 
 	private String codeId;
 	private String codeIdNm;
