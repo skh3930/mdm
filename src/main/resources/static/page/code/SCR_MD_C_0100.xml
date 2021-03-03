@@ -27,31 +27,17 @@
 				<w2:dataMap baseNode="map" id="dma_code">
 					<w2:keyInfo>
 						<w2:key id="codeId" name="코드ID" dataType="text"></w2:key>
-						<w2:key id="codeIdNm" name="코드명" dataType="text"></w2:key>
-						<w2:key id="codeLength" name="코드길이" dataType="text"></w2:key>
-						<w2:key id="codeIdDesc" name="코드ID설명" dataType="text"></w2:key>
-						<w2:key id="tableNm" name="테이블명" dataType="text"></w2:key>
-						<w2:key id="codeRltn" name="코드관계" dataType="text"></w2:key>
-						<w2:key id="prntCodeId" name="부모코드ID" dataType="text"></w2:key>
-						<w2:key id="prntCodeVal" name="부모코드값" dataType="text"></w2:key>
-						<w2:key id="codeVal" name="코드값" dataType="text"></w2:key>
-						<w2:key id="codeValNm" name="코드값명" dataType="text"></w2:key>
-						<w2:key id="priority" name="우선순위" dataType="text"></w2:key>
-						<w2:key id="codeValDesc" name="코드값설명" dataType="text"></w2:key>
+						<w2:key id="codeName" name="코드명" dataType="text"></w2:key>
+						<w2:key id="codeLngt" name="코드길이" dataType="text"></w2:key>
+						<w2:key id="codeDscr" name="코드설명" dataType="text"></w2:key>
+						<w2:key id="tablName" name="테이블명" dataType="text"></w2:key>
 					</w2:keyInfo>
 					<w2:data use="true">
 						<codeId><![CDATA[ ]]></codeId>
-						<codeIdNm><![CDATA[ ]]></codeIdNm>
-						<codeLength><![CDATA[ ]]></codeLength>
-						<codeIdDesc><![CDATA[ ]]></codeIdDesc>
-						<tableNm><![CDATA[ ]]></tableNm>
-						<codeRltn><![CDATA[ ]]></codeRltn>
-						<prntCodeId><![CDATA[ ]]></prntCodeId>
-						<prntCodeVal><![CDATA[ ]]></prntCodeVal>
-						<codeVal></codeVal>
-						<codeValNm></codeValNm>
-						<priority></priority>
-						<codeValDesc></codeValDesc>
+						<codeName><![CDATA[ ]]></codeName>
+						<codeLngt><![CDATA[ ]]></codeLngt>
+						<codeDscr><![CDATA[ ]]></codeDscr>
+						<tablName><![CDATA[ ]]></tablName>
 					</w2:data>
 				</w2:dataMap>
 				<w2:dataList baseNode="list" repeatNode="map" id="dlt_codeRltn" saveRemovedData="true">
@@ -72,7 +58,7 @@
 				</w2:dataList>
 			</w2:dataCollection>
 			<w2:workflowCollection></w2:workflowCollection>
-			<xf:submission id="sbm_saveCode" ref="data:json,dma_code" target="" action="/code" method="post" mediatype="application/json"
+			<xf:submission id="sbm_saveCode" ref="data:json,dma_code" target="" action="/code/modifyCode" method="post" mediatype="application/json"
 				encoding="UTF-8" instance="" replace="" errorHandler="" customHandler="" mode="asynchronous" processMsg="" ev:submit=""
 				ev:submitdone="scwin.sbm_saveCode_submitdone" ev:submiterror="" abortTrigger="">
 			</xf:submission>
@@ -96,11 +82,12 @@
 	};
 	
 	scwin.btn_save_onclick = function() {
-		var valInfo = [{ id : "codeId", mandatory : true }];
+		//var valInfo = [{ id : "codeId", mandatory : true }];
 		
-		if (com.validateGroup(grp_code, valInfo)) {
-			com.executeSubmission(sbm_saveCode);
-		}
+		//if (com.validateGroup(grp_code, valInfo)) {
+		//	com.executeSubmission(sbm_saveCode);
+		//}
+		com.executeSubmission(sbm_saveCode);
 	};
 	
 	scwin.btn_searchCodeId_onclick = function() {
@@ -155,7 +142,7 @@
 					<xf:group style="" tagname="tr">
 						<xf:group style="" class="w2tb_th req" tagname="th">코드ID</xf:group>
 						<xf:group style="" class="w2tb_td" tagname="td">
-							<xf:input id="ibx_codeId" ref="data:dma_code.codeId" style="height:24px;width:80%;" disabled="" mandatory="" maxByteLength="" class="req" dataType=""></xf:input>
+							<xf:input id="ibx_codeId" ref="data:dma_code.codeId" style="height:21px;width:80%;" disabled="" mandatory="" maxByteLength="" class="req" dataType=""></xf:input>
 							<w2:anchor class="btn_gcm" clickEventElement="outerDiv" ev:onclick="scwin.btn_searchCodeId_onclick" id="btn_searchCodeId"
 								outerDiv="true" style="">
 								<xf:label><![CDATA[조회]]></xf:label>
@@ -163,12 +150,12 @@
 						</xf:group>
 						<xf:group class="w2tb_th" tagname="th">코드ID명</xf:group>
 						<xf:group class="w2tb_td" tagname="td">
-							<xf:input id="ibx_codeIdNm" ref="data:dma_code.codeIdNm" style="height:24px;" class="" mandatory="">
+							<xf:input id="ibx_codeIdNm" ref="data:dma_code.codeName" style="height:21px;" class="" mandatory="">
 							</xf:input>
 						</xf:group>
 						<xf:group tagname="th" class="w2tb_th">코드길이<w2:attributes></w2:attributes></xf:group>
 						<xf:group class="w2tb_td" tagname="td">
-							<xf:input id="ibx_codeLength" ref="data:dma_code.codeLength" style="height:24px;" class="" mandatory="" dataType="number">
+							<xf:input id="ibx_codeLength" ref="data:dma_code.codeLngt" style="height:21px;" class="" mandatory="" dataType="text">
 							</xf:input>
 						</xf:group>
 					</xf:group>
@@ -179,7 +166,7 @@
 								<w2:colspan>3</w2:colspan>
 								<w2:rowspan>1</w2:rowspan>
 							</w2:attributes>
-							<xf:input id="ibx_codeIdDesc" ref="data:dma_code.codeIdDesc" style="height:24px;" initValue=""></xf:input>
+							<xf:input id="ibx_codeIdDesc" ref="data:dma_code.codeDscr" style="height:21px;" initValue=""></xf:input>
 						</xf:group>
 						<xf:group tagname="th" class="w2tb_th">
 							테이블명
@@ -187,8 +174,8 @@
 						</xf:group>
 						<xf:group tagname="td" class="w2tb_td">
 							<w2:attributes></w2:attributes>
-							<xf:input class="" id="ibx_tableNm" initValue="" mandatory="" ref="data:dma_code.tableNm"
-								style="height:24px;" maxByteLength="">
+							<xf:input class="" id="ibx_tableNm" initValue="" mandatory="" ref="data:dma_code.tablName"
+								style="height:21px;" maxByteLength="">
 							</xf:input>
 						</xf:group>
 					</xf:group>
@@ -197,7 +184,7 @@
 						<xf:group style="" class="w2tb_td" tagname="td">
 							<xf:select1 allOption="" appearance="minimal" chooseOption="" chooseOptionLabel="&amp;nbsp;" direction="auto"
 								disabled="true" disabledClass="w2selectbox_disabled" displayMode="label" id="sbx_codeRltn" optionOrder="false"
-								ref="data:dma_code.codeRltn" renderType="component" style="height:24px;" submenuSize="auto">
+								ref="data:dma_code.codeRltn" renderType="component" style="height:21px;" submenuSize="auto">
 								<xf:choices>
 									<w2:gridViewItemset hideHeader="" rowMouseOver="" nodeset="data:dlt_codeRltn" width=""
 										selectedRowColor="" label="codeNm" visibleRowNum="" autoFit="" value="codeVal" rowMouseOverColor="" height="">
@@ -207,7 +194,7 @@
 						</xf:group>
 						<xf:group class="w2tb_th" tagname="th">코드관계상위코드ID</xf:group>
 						<xf:group class="w2tb_td" tagname="td">
-							<xf:input id="ibx_prntCodeId" ref="data:dma_code.prntCodeId" style="height:24px;width: 80%;"
+							<xf:input id="ibx_prntCodeId" ref="data:dma_code.prntCodeId" style="height:21px;width: 80%;"
 								disabled="true" initValue="">
 							</xf:input>
 							<w2:anchor class="btn_gcm" clickEventElement="outerDiv" ev:onclick="" id="btn_searchPrntCodeId"
@@ -223,7 +210,7 @@
 							<w2:attributes></w2:attributes>
 							<xf:select1 allOption="" appearance="minimal" chooseOption="" chooseOptionLabel="&amp;nbsp;" direction="auto"
 								disabled="true" disabledClass="w2selectbox_disabled" displayMode="label" id="sbx_prntCodeVal" optionOrder="false"
-								ref="data:dma_code.prntCodeVal" renderType="component" style="height:24px;" submenuSize="auto">
+								ref="data:dma_code.prntCodeVal" renderType="component" style="height:21px;" submenuSize="auto">
 								<xf:choices></xf:choices>
 							</xf:select1>
 						</xf:group>
@@ -249,18 +236,18 @@
 					<xf:group style="" tagname="tr">
 						<xf:group class="w2tb_th" style="" tagname="th">코드값</xf:group>
 						<xf:group class="w2tb_td" style="" tagname="td">
-							<xf:input disabled="true" id="ibx_codeVal" ref="data:dma_code.codeVal" style="height:24px;"></xf:input>
+							<xf:input disabled="true" id="ibx_codeVal" ref="data:dma_code.codeWrth" style="height:21px;"></xf:input>
 						</xf:group>
 						<xf:group class="w2tb_th" tagname="th">코드값명</xf:group>
 						<xf:group class="w2tb_td" tagname="td">
-							<xf:input class="" id="idx_codeValNm" mandatory="" ref="data:dma_code.codeValNm"
-								style="height:24px;" initValue="">
+							<xf:input class="" id="idx_codeValNm" mandatory="" ref="data:dma_code.codeWrthName"
+								style="height:21px;" initValue="">
 							</xf:input>
 						</xf:group>
 						<xf:group class="w2tb_th" tagname="th">우선순위<w2:attributes></w2:attributes></xf:group>
 						<xf:group class="w2tb_td" tagname="td">
 							<w2:attributes></w2:attributes>
-							<xf:input disabled="" id="idx_priority" ref="data:dma_code.priority" style="height:24px;"></xf:input>
+							<xf:input disabled="" id="idx_priority" ref="data:dma_code.prrtRnkn" style="height:21px;"></xf:input>
 						</xf:group>
 					</xf:group>
 					<xf:group style="" tagname="tr">
@@ -270,7 +257,7 @@
 								<w2:colspan>5</w2:colspan>
 								<w2:rowspan>1</w2:rowspan>
 							</w2:attributes>
-							<xf:input disabled="" id="idx_codeValDesc" ref="data:dma_code.codeValDesc" style="height:24px"></xf:input>
+							<xf:input disabled="" id="idx_codeValDesc" ref="data:dma_code.codeValDesc" style="height:21px;"></xf:input>
 						</xf:group>
 					</xf:group>
 				</xf:group>

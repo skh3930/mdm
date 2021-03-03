@@ -34,7 +34,7 @@ public class Result {
 		resultMap.put(id, data);
 	}
 	
-	public void setData(String id, CommonVO data) {
+	public void setData(String id, Common data) {
 		resultMap.put(id, data);
 	}
 
