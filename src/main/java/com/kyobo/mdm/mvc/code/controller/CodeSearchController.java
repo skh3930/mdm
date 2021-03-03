@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class CodeSearchController {
      * @param Map
      * @return Map
      */
-    @RequestMapping("/findCode")
+    @PostMapping("/findCode")
     public Map<String, Object> findCode(@RequestBody Map<String, Object> param) {
 
         CodeSearchCond codeSearchCond = BeanUtil.mapToBean((Map) param.get("dma_codeSearchCond"), CodeSearchCond.class);
@@ -51,7 +52,7 @@ public class CodeSearchController {
      * @param Map
      * @return Map
      */
-    @RequestMapping("/readCodeGrp")
+    @PostMapping("/readCodeGrp")
     public Map<String, Object> readCodeGrp(@RequestBody Map<String, Object> param) {
 
         String codeId = (String) param.get("codeId");
@@ -84,7 +85,7 @@ public class CodeSearchController {
      * @param Map
      * @return Map
      */
-    @RequestMapping("/readCodeDtl")
+    @PostMapping("/readCodeDtl")
     public Map<String, Object> readCodeDtl(@RequestBody Map<String, Object> param) {
 
     	String codeId = (String) param.get("codeId");
@@ -104,7 +105,7 @@ public class CodeSearchController {
      * @param request
      * @return
      */
-    @RequestMapping("/readCode")
+    @PostMapping("/readCode")
     public Map<String, Object> readCode(@RequestBody Map<String, Object> param) {
 
         String codeId = (String) param.get("codeId");

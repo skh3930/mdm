@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class CodeController {
 	 * @param Map
 	 * @return Map
 	 */
-	@RequestMapping("/registerCode")
+	@PostMapping("/registerCode")
 	public Map<String, Object> registerCode(@RequestBody Map<String, Object> param) {
 
 		List<CodeGrp> codeGrps = BeanUtil.mapToBeanList((List) param.get("dlt_codeGrp"), CodeGrp.class); // 코드그룹
@@ -61,7 +62,7 @@ public class CodeController {
 	 * @param Map
 	 * @return Map
 	 */
-	@RequestMapping("/modifyCode")
+	@PostMapping("/modifyCode")
 	public Map<String, Object> modifyCode(@RequestBody Map<String, Object> param) {
 		Result result = new Result();
 		result.setMsg(MDMConstants.STATUS_SUCESS);
