@@ -78,13 +78,13 @@
     };
     
     scwin.btn_hide_onclick = function() {
-        $p.getFrame().hideProcessMessage();
+        $p._getProcessMsgTargetFrame().hideProcessMessage();
     };
     
     scwin.btn_cancel_onclick = function() {
-        var submissionList = $p.getFrame()._processMsgQueue;
-        while (submissionList.length > 0) {
-            WebSquare.ModelUtil.abort(submissionList.shift().id);
+        var submissionList = $p._getProcessMsgTargetFrame()._processMsgQueue;
+        for(var i = 0; i < submissionList.length; i++){
+            WebSquare.ModelUtil.abort(submissionList[i].org_id, submissionList[i].scope_id);
         }
     };
     ]]></script>

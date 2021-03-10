@@ -7,6 +7,7 @@
 <title>FILE UPLOAD</title>
 <script type="text/javascript" src="../../../message/htmlCommon.js"></script>
 <script language="JavaScript">
+	var osName = "";
 	var vActionUrl		= "";
 	var vCallbackMethod	= "";
     var domain = "";
@@ -19,6 +20,8 @@
     var useMaxByteLength = "";
     var dateFormat = "";
     var byteCheckEncoding = "";
+    var columnOrder = "";
+    var chunkNum = 0;
 
    	// 다국어
    	var Upload_ignore_spaces = "";
@@ -61,6 +64,16 @@
     		if( domain ) {
     			document.domain = domain;	
             }
+
+		 	// 팝업 사이즈 보정
+		 	if(navigator.userAgent.indexOf("Windows") != -1) {
+		 		osName = "window";
+		 	} else if(navigator.userAgent.indexOf("Macintosh") != -1) {
+		 		osName = "mac";
+		 	}
+
+		 	var sizeInfo = crossBrowserSize();
+			window.resizeTo( sizeInfo.width, sizeInfo.height );
 
         	gridID = getParameter("gridID");
         	uploadInfo = opener.JSON.parse( opener[gridID]._excelUploadInfo );
@@ -169,7 +182,8 @@
 		gridStartRow = uploadInfo.gridStartRow;
 		gridStartCol = uploadInfo.gridStartCol;
 		gridEndCol = uploadInfo.gridEndCol;
-		gridSheetNo = uploadInfo.gridSheetNo
+		gridSheetNo = uploadInfo.gridSheetNo;
+		gridSheetName = uploadInfo.gridSheetName;
 		expressionColumns = uploadInfo.expressionColumns;
 		type = uploadInfo.type;
 		uploadType = uploadInfo.uploadType;
@@ -189,6 +203,8 @@
 		useMaxByteLength = uploadInfo.useMaxByteLength;
 		dateFormat = uploadInfo.dateFormat;
 		byteCheckEncoding = uploadInfo.byteCheckEncoding;
+		columnOrder = uploadInfo.columnOrder;
+		chunkNum = uploadInfo.chunkNum || 0;
 
 		var header_Exist =document.getElementsByName("header");
 		//skipSpace 처리
@@ -281,6 +297,7 @@
 		document.getElementById("gridStartCol").value = gridStartCol;
 		document.getElementById("gridEndCol").value = gridEndCol;
 		document.getElementById("gridSheetNo").value = gridSheetNo;
+		document.getElementById("gridSheetName").value = gridSheetName;
 		
 		document.getElementById("expressionColumns").value = expressionColumns;
 		//grid style을 전송한다. 
@@ -296,19 +313,12 @@
 		document.getElementById("useMaxByteLength").value = useMaxByteLength;
 		document.getElementById("dateFormat").value = dateFormat;
 		document.getElementById("byteCheckEncoding").value = byteCheckEncoding;
+		document.getElementById("columnOrder").value = columnOrder;
+		document.getElementById("chunkNum").value = chunkNum;
 		
 		with( document.__uploadForm__ ) {
 			action = actionUrl;
 		}
-
-        if(isSafari) {
-            setTimeout(function() {
-                var bottomMargin = parseInt(document.height - document.documentElement.offsetHeight, 10) * -1||0;     
-                if( bottomMargin != 0 ) {
-                    self.resizeBy(0, bottomMargin);
-                }
-            }, 1);
-        }
 	}
 
     function doFinish() {
@@ -368,7 +378,7 @@
 				layerUP.style.visibility = "hidden";
 				document.body.appendChild(layerUP);
 				src = opener.WebSquare.net.getSSLBlankPage();
-				layerUP.innerHTML = "<iframe frameborder='0px' name='" + thisForm.target + "' scrolling='no' style='width:100px; height:100px' " + src + "></iframe>";
+				layerUP.innerHTML = "<iframe frameborder='0px' name='" + thisForm.target + "' id='" + thisForm.target + "' scrolling='no' style='width:100px; height:100px' " + src + "></iframe>";
 			}
 			
 			showProcessMessage( processMsg );
@@ -382,6 +392,10 @@
 	function returnData( vData ) {
 		if( processMsg != "" ) {
 			hideProcessMessage();
+		}
+
+		if(chunkNum > 0) {
+			vappend = true;
 		}
 
 		var decPwd = "";
@@ -431,16 +445,7 @@
 			
 			alert(msg);
 		} else { 
-			var child;
-			if( delim != "," ) {
-				var childData = (doc.getElementsByTagName("array"))[0].firstChild.nodeValue;
-				//child = toArray( childData, delim );
-				child = "[\"" + toArray( childData, delim ).join("\",\"") + "\"]";
-			} else {
-				child = (doc.getElementsByTagName("array"))[0].firstChild.nodeValue;
-			}
-
-	//		var child = child.substring(2,child.length-3); //.split("\",\"");
+			var child = (doc.getElementsByTagName("array"))[0].firstChild.nodeValue;
 			
 			if( typeof vappend =="string" ) {
 				vappend = opener.WebSquare.util.getBoolean(vappend);
@@ -457,9 +462,17 @@
 					var dcComp = opener.WebSquare.util.getComponentById(dataList);
 					var preCnt = dcComp.getRowCount();
 					if( uploadType == 1 || uploadType == 2 ) { // 0:실제데이터, 1:출력그대로, 2: 0+1
-						dcComp.setArrayFile(jsonArray, vappend, gridID, uploadType);
+						if( delim != "," ) {
+							dcComp.setArrayFile(jsonArray, vappend, gridID, uploadType, delim);
+						} else {
+							dcComp.setArrayFile(jsonArray, vappend, gridID, uploadType);
+						}
 					 } else if( uploadType == 0 ) {
-						dcComp.setArray(jsonArray, vappend);
+						if( delim != "," ) {
+							dcComp.setArray(jsonArray, vappend, null, null, delim);
+						} else {
+							dcComp.setArray(jsonArray, vappend);
+						}
 					 }
 
 					 if( status == "C" ) {
@@ -507,12 +520,20 @@
 				var fileName = fileNameDom.value;
 				var fileNameArr = fileName.split("\\"); //fileName에 대해서 IE에서는 파일 경로가 나오는데 FF chrome은 나오지 않는다. 따라서 '\\'기준으로 나눠준다.
 				opener.window[gridID].fireFileReadEnd( fileNameArr[fileNameArr.length-1] );
-				window.self.close();
+
+				if(chunkNum == 0) {
+					window.self.close();
+				}
+
 			} catch (e) {
 				opener.WebSquare.exception.printStackTrace(e);
 				alert( Upload_msg5 );
 			}
 		}
+	}
+	
+	function windowClose() {
+		window.self.close();
 	}
 	
 	function receiveMessage(retObj) {
@@ -540,35 +561,119 @@
 		return returnValue;
 	}
 
-	 function crossBrowserHeight() {
+	 function crossBrowserSize() {
+	 	var sizeInfo = {
+	 		"height": 204,
+	 		"width": 462
+	 	};
+
 		if(opener.WebSquare.util.isIE(6)) {
-			return 119;
+			sizeInfo.height = 212;
+			sizeInfo.width = 456;
+		} else if(opener.WebSquare.util.isIE(7)) {
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
+		} else if(opener.WebSquare.util.isIE(8)) {
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
+		}  else if(opener.WebSquare.util.isIE(9)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		}  else if(opener.WebSquare.util.isIE(10)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 462;
+		} else if(opener.WebSquare.util.isSpartan()) {
+			sizeInfo.height = 178;
+			sizeInfo.width = 446;
+		} else if(opener.WebSquare.util.isChrome()) {
+			if(navigator.userAgent.indexOf("OPR") != -1) {  //opera
+				if(osName == "window") {
+					sizeInfo.height = 226;
+					sizeInfo.width = 462;
+				} else if(osName == "mac") {
+					sizeInfo.height = 189;
+					sizeInfo.width = 446;
+				}
+			} else { //chrome
+				if(osName == "window") {
+					sizeInfo.height = 201;
+					sizeInfo.width = 462;
+				} else if(osName == "mac") {
+					sizeInfo.height = 181;
+					sizeInfo.width = 446;
+				}
+			}
+        } else if(opener.WebSquare.util.isFF()) {
+        	if(osName == "window") {
+				sizeInfo.height = 213;
+				sizeInfo.width = 462;
+			} else if(osName == "mac") {
+				sizeInfo.height = 191;
+				sizeInfo.width = 446;
+			}
+		} else if(opener.WebSquare.util.isSafari()) {
+			if(osName == "window") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			}
+		} else if(opener.WebSquare.util.isOpera()) {
+			if(osName == "window") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			}
 		}
-		if(opener.WebSquare.util.isIE(7)) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isIE(8)) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isIE(9)) {
-			return 119;
-		} 
-        if(opener.WebSquare.util.isIEAllVersion(11)) {
-            return 119;
-        } 
-		if(opener.WebSquare.util.isFF()) {
-			return 120;
-		} 
-		if(opener.WebSquare.util.isChrome()) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isSafari()) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isOpera()) {
-			return 119;
-		} 
-		return 119;
+
+		return sizeInfo;
+	 }
+
+	 function crossBrowserHeight() {
+		var widthSize = 145;
+		if(opener.WebSquare.util.isIE(6)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(7)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(8)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(9)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(10)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+            widthSize = 145;
+        } else if(opener.WebSquare.util.isFF()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isChrome()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isSafari()) {
+			if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isOpera()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		}
+
+		return widthSize;
 	}
 	
     var preChecked = false;
@@ -828,7 +933,7 @@
 				</tr> 
 				<tr>
 					<th><label id="isPwd" for="pwd" class="dot">비밀번호 :</label></th>
-					<td colSpan="2"><input type="password" class="ipt" name="pwd" id="pwd" /></td>
+					<td colSpan="2"><input type="password" class="ipt" name="pwd" id="pwd" autocomplete="off" /></td>
 				</tr> 
 			</table>
 		</div>
@@ -859,6 +964,9 @@
   <input type="hidden" id="useMaxByteLength" name="useMaxByteLength" value="" />
   <input type="hidden" id="dateFormat" name="dateFormat" value="" />
   <input type="hidden" id="byteCheckEncoding" name="byteCheckEncoding" value="" />
+  <input type="hidden" id="columnOrder" name="columnOrder" value="" />
+  <input type="hidden" id="gridSheetName" name="gridSheetName" value="" />
+  <input type="hidden" id="chunkNum" name="chunkNum" value="" />
 </form>
 
 </body>

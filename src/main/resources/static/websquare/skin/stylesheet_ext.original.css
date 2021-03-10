@@ -1153,14 +1153,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 .w2multiselect_div {
 	overflow-x : hidden;
 	overflow-y : auto;
-	scrollbar-face-color: #ffffff;
-	scrollbar-highlight-color: #ffffff;
-	scrollbar-shadow-color: #e7e7e7;
-	scrollbar-3dlight-color: #c7c7c7;
-	scrollbar-arrow-color: #797979;
-	scrollbar-track-color: #c7c7c7;
-	scrollbar-base-color: #ffffff;
-	scrollbardarkshadowcolor: #797979;
 	display : inline-block;
 	vertical-align : middle;
 	/*border : 1px solid #b5c5d2;*/
@@ -1590,13 +1582,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	padding : 0;
 	position : absolute;
 	width : 20px;
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 	overflow-x : hidden;
 	overflow-y : auto;
 }
@@ -1634,14 +1619,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	overflow-y : auto;
 	white-space : nowrap;
 	z-index : 5100;
-
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 }
 
 /* 셀렉트 박스 sublayer안의 table 스타일 */
@@ -1924,13 +1901,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	padding : 0;
 	position : absolute;
 	width : 20px;
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 	overflow-x : hidden;
 	overflow-y : auto;
 }
@@ -1985,14 +1955,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	overflow-y : auto;
 	white-space : nowrap;
 	z-index : 5100;
-
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 }
 
 /* 셀렉트 박스 sublayer안의 table 스타일 */
@@ -2146,40 +2108,36 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	bottom: 0px;
 }
 
-.w2checkcombobox_btn_confirm {
-	position : relative;
-	float: right;
-	width : 65px;
-	height : 20px;
-	line-height: 20px;
+.w2checkcombobox_btnArea{
+	position:relative;
+	padding-right:3px;
+	text-align:right;
+	box-sizing: border-box;
+	border: 1px solid #b3b3b3
+}
+
+.w2checkcombobox_btn_cancel,.w2checkcombobox_btn_confirm {
+	position: relative;
+	display: inline-block;
+	height: 20px;
+	
+	text-align: center;
+	margin:3px 0 3px 3px;
+	padding: 0 2px 0 2px;
+	font-size: 11px;
+	border: 1px solid #d1d1d1;
+	border-radius:3px;
 	background-image : url(../uiplugin/checkcombobox/images/button.png);
 	background-position : center center;
 	background-repeat : no-repeat;
-	cursor : pointer;
-	text-align : center;
-	margin: 3px 0 2px 0;
 }
 
-.w2checkcombobox_btn_confirm:hover {
+.w2checkcombobox_btn_confirm:hover,.w2checkcombobox_btn_cancel:hover {
 	background-image : url(../uiplugin/checkcombobox/images/button_on.png);
 }
 
-.w2checkcombobox_btn_cancel {
-	position : relative;
-	float: right;
-	width : 65px;
-	height : 20px;
-	line-height: 20px;
-	background-image : url(../uiplugin/checkcombobox/images/button.png);
-	background-position : center center;
-	background-repeat : no-repeat;
-	cursor : pointer;
-	text-align : center;
-	margin: 3px 0 2px 0;
-}
-
-.w2checkcombobox_btn_cancel:hover {
-	background-image : url(../uiplugin/checkcombobox/images/button_on.png);
+.w2gridItemTable {
+	z-index : 5010;
 }
 
 /* checkcombobox sublayer div 스타일 */
@@ -2190,14 +2148,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	overflow : hidden;
 	white-space : nowrap;
 	z-index : 5101;
-
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 }
 
 .w2table_ccb {
@@ -2208,14 +2158,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	overflow-y : auto;
 	white-space : nowrap;
 	z-index : 5100;
-
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 }
 
 /* checkcombobox sublayer안의 table 스타일 */
@@ -2321,13 +2263,6 @@ a.w2trigger_anchor:hover span{background:url(../uiplugin/trigger/images/b_blueon
 	padding : 0;
 	position : absolute;
 	width : 20px;
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 	overflow-x : hidden;
 	overflow-y : auto;
 }
@@ -3187,7 +3122,6 @@ button.w2calendar_header_next_month {
 	width : 20px;
 	height : 20px;
 	cursor : pointer;
-	outline: none;
 	background : url(../uiplugin/calendar/images/month_last.gif) center center no-repeat white;
 }
 .w2calendar_picker_header_last_entity:hover {
@@ -3199,7 +3133,6 @@ button.w2calendar_header_next_month {
 	width : 251px;
 	height : 20px;
 	cursor : pointer;
-	outline: none;
 	text-align : center;
 	vertical-align : middle;
 	font-weight : bold;
@@ -3213,7 +3146,6 @@ button.w2calendar_header_next_month {
 	width : 20px;
 	height : 20px;
 	cursor : pointer;
-	outline: none;
 	background : url(../uiplugin/calendar/images/month_next.gif) center center no-repeat white;
 }
 .w2calendar_picker_header_next_entity:hover {
@@ -3624,10 +3556,13 @@ button.w2calendar_header_next_month {
 }
 .w2calendar_class1 .w2calendar_col_day {
 	height : 18px;
-	text-align : center;
-	font-size : 12px;
-	font-weight : bold;
-	color : #004080;
+    text-align : center;
+    font-weight : bold;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1px;
+    text-indent: 0;
+    color: transparent;
 }
 
 .w2calendar_class1 .w2calendar_day0 {
@@ -3722,10 +3657,13 @@ button.w2calendar_header_next_month {
 }
 .w2calendar_class2 .w2calendar_col_day {
 	height : 18px;
-	text-align : center;
-	font-size : 12px;
-	font-weight : bold;
-	color : #004080;
+    text-align : center;
+    font-weight : bold;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1px;
+    text-indent: 0;
+    color: transparent;
 }
 
 .w2calendar_class2 .w2calendar_day0 {
@@ -3835,10 +3773,13 @@ button.w2calendar_header_next_month {
 }
 .w2calendar_class3 .w2calendar_col_day {
 	height : 18px;
-	text-align : center;
-	font-size : 12px;
-	font-weight : bold;
-	color : #004080;
+    text-align : center;
+    font-weight : bold;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1px;
+    text-indent: 0;
+    color: transparent;
 }
 
 .w2calendar_class3 .w2calendar_day0 {
@@ -3948,10 +3889,13 @@ button.w2calendar_header_next_month {
 }
 .w2calendar_class4 .w2calendar_col_day {
 	height : 18px;
-	text-align : center;
-	font-size : 12px;
-	font-weight : bold;
-	color : #004080;
+    text-align : center;
+    font-weight : bold;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1px;
+    text-indent: 0;
+    color: transparent;
 }
 
 .w2calendar_class4 .w2calendar_day0 {
@@ -4047,10 +3991,13 @@ button.w2calendar_header_next_month {
 }
 .w2calendar_class5 .w2calendar_col_day {
 	height : 18px;
-	text-align : center;
-	font-size : 12px;
-	font-weight : bold;
-	color : #004080;
+    text-align : center;
+    font-weight : bold;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1px;
+    text-indent: 0;
+    color: transparent;
 }
 
 .w2calendar_class5 .w2calendar_day0 {
@@ -4388,6 +4335,10 @@ button.w2calendar_header_next_month {
 }
 
 /* treeview_virtual */
+.w2treeview_virtual {
+	position: relative;
+}
+
 .w2treeview_virtual .w2treeview_virtual_main_div {
     position:absolute;
     height:100%;
@@ -4694,6 +4645,12 @@ button.w2calendar_header_next_month {
 	cursor : pointer;
 }
 
+.w2window_close_atag {
+    font-size: 1px;
+    overflow: hidden;
+    text-indent:-9999px;
+}
+
 .w2window_popup {
 	position : absolute;
 	top : 5px;
@@ -4925,6 +4882,39 @@ button.w2calendar_header_next_month {
     width:100%;
     height:100%;
     overflow:auto;
+}
+
+.w2_proc_modal {
+	position : absolute;
+	left : 0;
+	top : 0;
+	width : 100%;
+	height : 100%;
+	background-color : #cccccc !important;
+	filter : alpha(opacity=30);
+	opacity : 0.3;
+	z-index: 3800;
+}
+
+.w2_wframe_modal {
+	position : absolute;
+	left : 0;
+	top : 0;
+	width : 100%;
+	height : 100%;
+	background-color : #cccccc !important;
+	filter : alpha(opacity=30);
+	opacity : 0.3;
+	z-index: 3800;
+	display: none;
+}
+
+.w2modalopened_wframe {
+	overflow : hidden;
+}
+
+.w2modalopened_ghost {
+	overflow : hidden;
 }
 
 /* chart */
@@ -6031,8 +6021,10 @@ button.w2calendar_header_next_month {
 	cursor: pointer;	
 }
 .w2grid_contextMenu_column {
-	cursor: pointer;
-	padding-top: 3px;	
+    cursor: pointer;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -6532,6 +6524,10 @@ button.w2calendar_header_next_month {
 	background-color:#0080ff;
 	opacity : 0.3;
 	filter : alpha(opacity=30);
+}
+
+.w2drag_activate {
+	-ms-user-select: none;
 }
 
 /* w2sort */
@@ -7283,10 +7279,15 @@ button.w2calendar_header_next_month {
 }
 
 .w2tabcontrol_control .btn_scrollRight {
-	position:absolute;
+	float:right;
+	width:20px;
+	background : url(../uiplugin/tabControl/images/right_off.png) no-repeat center center;
+}
+
+.w2tabcontrol_control .btn_scrollRight_with_closeAll {
+	float:right;
 	margin-right:0;
 	width:20px;
-	right:23px;
 	background : url(../uiplugin/tabControl/images/right_off.png) no-repeat center center;
 }
 
@@ -7296,16 +7297,32 @@ button.w2calendar_header_next_month {
 }
 
 .w2tabcontrol_control .btn_submenu {
-	position:absolute;
-	margin-right:3px;
+	float:right;
 	width:20px;
-	right:0;
+	background : url(../uiplugin/tabControl/images/submenu_off.png) no-repeat center center;
+}
+
+.w2tabcontrol_control .btn_submenu_with_closeAll {
+	float:right;
+	width:20px;
 	background : url(../uiplugin/tabControl/images/submenu_off.png) no-repeat center center;
 }
 
 .w2tabcontrol_control .btn_submenu_over {
 	cursor : pointer;
 	background : url(../uiplugin/tabControl/images/submenu_on.png) no-repeat center center;
+}
+
+.w2tabcontrol_control .btn_close_all {
+	float:right;
+	margin-right:3px;
+	width:20px;
+	background : url(../uiplugin/tabControl/images/close_all_off.png) no-repeat center center;
+}
+
+.w2tabcontrol_control .btn_close_all_over {
+	cursor : pointer;
+	background : url(../uiplugin/tabControl/images/close_all_on.png) no-repeat center center;
 }
 
 .w2tabcontrol_mobiletabscroll {
@@ -7335,14 +7352,6 @@ button.w2calendar_header_next_month {
 	white-space : nowrap;
 	z-index : 6010;
 	margin-top:1px;
-
-	scrollbar-face-color : #FFFFFF;
-	scrollbar-highlight-color : #FFFFFF;
-	scrollbar-3dlight-color : #C7C7C7;
-	scrollbar-arrow-color : #797979;
-	scrollbar-track-color : #C7C7C7;
-	scrollbar-darkshadow-color : #C7C7C7;
-	scrollbar-base-color : #FFFFFF;
 }
 
 /* tabControl submenu안의 table 스타일 */
@@ -9328,7 +9337,6 @@ table.pvtTable tr td {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 */
 table.pvtTable tr th, table.pvtTable tr th {
@@ -9362,7 +9370,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     overflow: hidden;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
     cursor: default;
 }
 .type9 {
@@ -9374,7 +9381,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .type10 {
     color: #3D3D3D;
@@ -9385,7 +9391,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .type12 {
     color: #3D3D3D;
@@ -9396,7 +9401,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .type14 {
     background-color: #e6EEEE;
@@ -9417,7 +9421,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .type16 {
     color: #3D3D3D;
@@ -9428,7 +9431,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .type13 {
     color: #3D3D3D;
@@ -9439,7 +9441,6 @@ table.pvtTable tr th, table.pvtTable tr th {
     white-space:nowrap;
     text-overflow:ellipsis;
     height:20px;
-    min-width: 80px;
 }
 .w2editablePivot_fixedColumnCell {
 	border-top : 1px solid #b3b3b3;

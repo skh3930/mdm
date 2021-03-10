@@ -47,8 +47,8 @@ var WebSquareLang = {
     E_logger_ContextmenuStartDebugOnSystem: "전체 시스템 디버그 실행",
     E_logger_ContextmenuPrint: "인쇄",
     E_logger_ContextmenuRefresh: "새로고침",
-    E_logger_ContextmenuPageReload: "전체 새로고침",
-    E_logger_ContextmenuPageReloadWframe: "새로고침",
+    E_logger_ContextmenuPageReload: "페이지 초기화",
+    E_logger_ContextmenuPageReloadWframe: "wframe 초기화",
     E_logger_ContextmenuBrowserReload: "브라우저 초기화",
     E_logger_ContectmenuFileInfo: "File 정보",
     E_logger_ContextmenuVersion: "Version 정보",
@@ -120,6 +120,9 @@ var WebSquareLang = {
 
     //errorMsg.html
     E_errorMsg_ErrorInfo: "Error 정보입니다.",
+    
+    //deprecated
+    E_deprecated_sync: "동기(synchronous) 통신은 성능 문제로 인해 사용을 권장하지 않습니다. 비동기(asynchronous) 통신을 사용할 것을 권장합니다.[%1]",
 
     //validator
     V_error_minLength: "최소 %1 자리 이상 입력해야 합니다.",
@@ -185,6 +188,7 @@ var WebSquareLang = {
     Calendar_weekdaynames_6: "토요일",
     Calendar_tooltip: "%1년 %2월 %3일",
     Calendar_select_title: "선택일",
+    Calendar_start: "달력 시작",
 
     //date
     Date_err_1900: "년도는 1900 년도 이상이어야 합니다",
@@ -223,6 +227,7 @@ var WebSquareLang = {
     Window_close: "창닫기",
     Window_popup: "팝업",
     Window_statusMsg: "로딩중입니다.",
+    Window_popup_start: "팝업 시작",
 
     // WindowContainer
     WindowContainer_controlIcon_maximize: "현재 창 최대화/이전 크기로 복원",
@@ -256,6 +261,7 @@ var WebSquareLang = {
     // tabControl
     TabControl_maxNum_warning: "tab개수는 최대 %1개까지만 허용됩니다.",
     TabControl_close: "닫기",
+    TabControl_close_all: "전체 닫기",
     TabControl_right_corner: "오른쪽 모서리 이미지",
     TabControl_left_corner: "왼쪽 모서리 이미지",
     TabControl_warning1: "[#title]탭이 존재합니다. 기존의 탭을 사용하시려면 '확인'을 새로운 탭을 생성하시려면 '취소'를 선택하세요",
@@ -282,6 +288,7 @@ var WebSquareLang = {
     Grid_filter_condition4: "제외할 끝 문자",
     Grid_filter_condition5: "포함",
     Grid_filter_condition6: "포함하지 않음",
+    Grid_filter_condition7: "= (메타문자 사용)",
     Grid_filter_info_Label1: "? 기호를 사용하여 한문자를 나타낼 수 있습니다.",
     Grid_filter_info_Label2: "* 기호를 사용하여 여러 문자를 나타낼 수 있습니다.",
     Grid_filter_confirm: "확인",
@@ -294,6 +301,7 @@ var WebSquareLang = {
     Grid_column_unfix: "전체 컬럼 틀고정 취소",
     Grid_column_adjustWidth: "선택 컬럼 크기 자동 맞추기",
     Grid_column_adjustAuto: "전체 컬럼 크기 자동 맞추기",
+    Grid_column_adjustAuto_none: "전체 컬럼 크기 자동 맞추기 해제",
     Grid_fold_all: "전체 그룹 접기",
     Grid_unfold_all: "전체 그룹 펼치기",
     Grid_ungroup_all: "전체 그룹 해제",

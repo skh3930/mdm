@@ -48,8 +48,8 @@ var WebSquareLang = {
     E_logger_ContextmenuStartDebugOnSystem: "Start debugging on the system",
     E_logger_ContextmenuPrint: "Print",
     E_logger_ContextmenuRefresh: "Refresh",
-    E_logger_ContextmenuPageReload: "Refresh All",
-    E_logger_ContextmenuPageReloadWframe: "Refresh",
+    E_logger_ContextmenuPageReload: "Reset Page",
+    E_logger_ContextmenuPageReloadWframe: "Reset wframe",
     E_logger_ContextmenuBrowserReload: "Reset Browser",
     E_logger_ContectmenuFileInfo: "File Info",
     E_logger_ContextmenuVersion: "Version",
@@ -98,7 +98,7 @@ var WebSquareLang = {
 
     E_dc_duplicated_Msg: "id[%1] is duplicated. The existing %2 has been deleted and  newly created.",
 
-    E_comp_duplicated_Msg: "id[%1] is duplicated. The existing %2 has been deleted and newly created",
+    E_comp_duplicated_Msg: "id[%1] is duplicated. Check the source code.",
 
     //logMsg.html
     E_logMsg_LogInfo: "Log Information.",
@@ -122,6 +122,9 @@ var WebSquareLang = {
 
     //errorMsg.html
     E_errorMsg_ErrorInfo: "Error Information.",
+    
+    //deprecated
+    E_deprecated_sync: "Synchronous XMLHttpRequest on the main thread is deprecated of its detrimental effects to the end user's experience.[%1]",
 
     //validator
     V_error_minLength: "Enter minimum %1 digit(s).",
@@ -186,6 +189,7 @@ var WebSquareLang = {
     Calendar_weekdaynames_6: "Saturday",
     Calendar_tooltip: "%2-%3-%1",
     Calendar_select_title: "selected date",
+    Calendar_start: "calendar start",
 
     //date
     Date_err_1900: "Year starts from 1900.",
@@ -224,6 +228,7 @@ var WebSquareLang = {
     Window_close: "Close",
     Window_popup: "Popup",
     Window_statusMsg: "Loading...",
+    Window_popup_start: "popup start",
 
     // WindowContainer
     WindowContainer_controlIcon_maximize: "Maximize/Restore",
@@ -256,7 +261,8 @@ var WebSquareLang = {
 
     // tabControl
     TabControl_maxNum_warning: "Maximum %1 tabs are allowed",
-    TabControl_close: "close",
+    TabControl_close: "Close",
+    TabControl_close_all: "Close All",
     TabControl_right_corner: "Right-corner Image",
     TabControl_left_corner: "Left-corner Image",
     TabControl_warning1: "[#title] already exists. Click OK to use the existing tab, or click Cancel to create a new tab.",
@@ -281,6 +287,7 @@ var WebSquareLang = {
     Grid_filter_condition4: "End character to be excluded",
     Grid_filter_condition5: "Include",
     Grid_filter_condition6: "Exclude",
+    Grid_filter_condition7: "= (Metacharacter)",
     Grid_filter_info_Label1: "? Symbol can represent a single character.",
     Grid_filter_info_Label2: "* Symbol can represent multiple characters.",
     Grid_filter_confirm: "OK",
@@ -293,6 +300,7 @@ var WebSquareLang = {
     Grid_column_unfix: "Unfix All Columns",
     Grid_column_adjustWidth: "Adjust Width",
     Grid_column_adjustAuto: "Adjust All Column Widths",
+    Grid_column_adjustAuto_none: "UnAdjust All Column Widths",
     Grid_fold_all: "Fold All",
     Grid_unfold_all: "Unfold All",
     Grid_ungroup_all: "Ungroup All",

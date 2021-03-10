@@ -15,8 +15,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 <meta http-equiv=Cache-Control content=No-Cache />
 <meta http-equiv=Pragma	content=No-Cache />
 <title>FILE UPLOAD</title>
-<script type="text/javascript" src="../../../message/htmlCommon.js"></script>
 <script language="JavaScript">
+	var osName = "";
 	var vActionUrl		= "";
 	var vCallbackMethod	= "";
     var domain = "";
@@ -30,6 +30,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
     var dateFormat = "";
     var byteCheckEncoding = "";
     var columnOrder = "";
+    var chunkNum = 0;
 
    	// 다국어
    	var Upload_ignore_spaces = "";
@@ -72,6 +73,16 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
     		if( domain ) {
     			document.domain = domain;	
             }
+
+			// 팝업 사이즈 보정
+			if(navigator.userAgent.indexOf("Windows") != -1) {
+				osName = "window";
+			} else if(navigator.userAgent.indexOf("Macintosh") != -1) {
+				osName = "mac";
+			}
+
+			var sizeInfo = crossBrowserSize();
+			window.resizeTo( sizeInfo.width, sizeInfo.height );
 
         	gridID = getParameter("gridID");
         	uploadInfo = opener.JSON.parse( opener[gridID]._excelUploadInfo );
@@ -180,7 +191,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		gridStartRow = uploadInfo.gridStartRow;
 		gridStartCol = uploadInfo.gridStartCol;
 		gridEndCol = uploadInfo.gridEndCol;
-		gridSheetNo = uploadInfo.gridSheetNo
+		gridSheetNo = uploadInfo.gridSheetNo;
+		gridSheetName = uploadInfo.gridSheetName;
 		expressionColumns = uploadInfo.expressionColumns;
 		type = uploadInfo.type;
 		uploadType = uploadInfo.uploadType;
@@ -201,6 +213,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		dateFormat = uploadInfo.dateFormat;
 		byteCheckEncoding = uploadInfo.byteCheckEncoding;
 		columnOrder = uploadInfo.columnOrder;
+		chunkNum = uploadInfo.chunkNum || 0;
 
 		var header_Exist =document.getElementsByName("header");
 		//skipSpace 처리
@@ -293,6 +306,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		document.getElementById("gridStartCol").value = gridStartCol;
 		document.getElementById("gridEndCol").value = gridEndCol;
 		document.getElementById("gridSheetNo").value = gridSheetNo;
+		document.getElementById("gridSheetName").value = gridSheetName;
 		
 		document.getElementById("expressionColumns").value = expressionColumns;
 		//grid style을 전송한다. 
@@ -309,19 +323,11 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		document.getElementById("dateFormat").value = dateFormat;
 		document.getElementById("byteCheckEncoding").value = byteCheckEncoding;
 		document.getElementById("columnOrder").value = columnOrder;
+		document.getElementById("chunkNum").value = chunkNum;
 		
 		with( document.__uploadForm__ ) {
 			action = actionUrl;
 		}
-
-        if(isSafari) {
-            setTimeout(function() {
-                var bottomMargin = parseInt(document.height - document.documentElement.offsetHeight, 10) * -1||0;     
-                if( bottomMargin != 0 ) {
-                    self.resizeBy(0, bottomMargin);
-                }
-            }, 1);
-        }
 	}
 
     function doFinish() {
@@ -395,6 +401,10 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 	function returnData( vData ) {
 		if( processMsg != "" ) {
 			hideProcessMessage();
+		}
+
+		if(chunkNum > 0) {
+			vappend = true;
 		}
 
 		var decPwd = "";
@@ -519,12 +529,20 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 				var fileName = fileNameDom.value;
 				var fileNameArr = fileName.split("\\"); //fileName에 대해서 IE에서는 파일 경로가 나오는데 FF chrome은 나오지 않는다. 따라서 '\\'기준으로 나눠준다.
 				opener.window[gridID].fireFileReadEnd( fileNameArr[fileNameArr.length-1] );
-				window.self.close();
+
+				if(chunkNum == 0) {
+					window.self.close();
+				}
+
 			} catch (e) {
 				opener.WebSquare.exception.printStackTrace(e);
 				alert( Upload_msg5 );
 			}
 		}
+	}
+	
+	function windowClose() {
+		window.self.close();
 	}
 	
 	function receiveMessage(retObj) {
@@ -552,35 +570,119 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		return returnValue;
 	}
 
-	 function crossBrowserHeight() {
+	 function crossBrowserSize() {
+	 	var sizeInfo = {
+	 		"height": 204,
+	 		"width": 462
+	 	};
+
 		if(opener.WebSquare.util.isIE(6)) {
-			return 119;
+			sizeInfo.height = 212;
+			sizeInfo.width = 456;
+		} else if(opener.WebSquare.util.isIE(7)) {
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
+		} else if(opener.WebSquare.util.isIE(8)) {
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
+		}  else if(opener.WebSquare.util.isIE(9)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		}  else if(opener.WebSquare.util.isIE(10)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 462;
+		} else if(opener.WebSquare.util.isSpartan()) {
+			sizeInfo.height = 178;
+			sizeInfo.width = 446;
+		} else if(opener.WebSquare.util.isChrome()) {
+			if(navigator.userAgent.indexOf("OPR") != -1) {  //opera
+				if(osName == "window") {
+					sizeInfo.height = 226;
+					sizeInfo.width = 462;
+				} else if(osName == "mac") {
+					sizeInfo.height = 189;
+					sizeInfo.width = 446;
+				}
+			} else { //chrome
+				if(osName == "window") {
+					sizeInfo.height = 201;
+					sizeInfo.width = 462;
+				} else if(osName == "mac") {
+					sizeInfo.height = 181;
+					sizeInfo.width = 446;
+				}
+			}
+        } else if(opener.WebSquare.util.isFF()) {
+        	if(osName == "window") {
+				sizeInfo.height = 213;
+				sizeInfo.width = 462;
+			} else if(osName == "mac") {
+				sizeInfo.height = 191;
+				sizeInfo.width = 446;
+			}
+		} else if(opener.WebSquare.util.isSafari()) {
+			if(osName == "window") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			}
+		} else if(opener.WebSquare.util.isOpera()) {
+			if(osName == "window") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			}
 		}
-		if(opener.WebSquare.util.isIE(7)) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isIE(8)) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isIE(9)) {
-			return 119;
-		} 
-        if(opener.WebSquare.util.isIEAllVersion(11)) {
-            return 119;
-        } 
-		if(opener.WebSquare.util.isFF()) {
-			return 120;
-		} 
-		if(opener.WebSquare.util.isChrome()) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isSafari()) {
-			return 119;
-		} 
-		if(opener.WebSquare.util.isOpera()) {
-			return 119;
-		} 
-		return 119;
+
+		return sizeInfo;
+	 }
+
+	 function crossBrowserHeight() {
+		var widthSize = 145;
+		if(opener.WebSquare.util.isIE(6)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(7)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(8)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(9)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIE(10)) {
+			widthSize = 145;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+            widthSize = 145;
+        } else if(opener.WebSquare.util.isFF()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isChrome()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isSafari()) {
+			if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isOpera()) {
+			if(osName == "window") {
+				widthSize = 145;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		}
+
+		return widthSize;
 	}
 	
     var preChecked = false;
@@ -741,6 +843,49 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 		splitDataIn[splitDataIn.length-1] = splitDataIn[splitDataIn.length-1].substr(0,((splitDataIn[splitDataIn.length-1]).length-2));	
 		return splitDataIn;
 	}
+
+	function getParameter(param) {
+	    var ret = "";
+	    var paramObj = {};
+	    try {
+            var srch = location.search.substring(1);
+            var arrayOfSrch = srch.split("&");
+            for (var i = 0; i < arrayOfSrch.length; i++) {
+                var tmpArray = arrayOfSrch[i].split("=");
+                if (tmpArray.length == 2) {
+                    paramObj[trim(tmpArray[0])] = trim(tmpArray[1]);
+                }
+            }
+	        ret = paramObj[param];
+	    } catch (e) {
+	        ret = "";
+	    }
+	    if (ret == null || typeof ret == 'undefined') {
+	        ret = '';
+	    }
+	    return decodeURI(ret);
+	}
+
+	function trim(str) {
+	    if (typeof str == "undefined" && str == null) return "";
+	    var leftTrimRegExp = new RegExp("^\\s\\s*");
+	    var rightTrimRegExp = new RegExp("\\s\\s*$");
+	    str = str.replace(leftTrimRegExp, '').replace(rightTrimRegExp, '');
+	    return str;
+	}
+
+	function getPopupParam() {
+	    try {
+	        var str = getParameter("modalParamIdx");
+	        return opener.WebSquare.net._getParam(str);
+	    } catch (e) {
+	        return "";
+	    }
+	}
+
+	function endsWith(str, s) {
+	    return str.substring(str.length - s.length, str.length) == s;
+	}
 </script>
 
 <style type="text/css">
@@ -754,8 +899,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 	.block {display:block;}
 
 	.wrap {width:444px; min-height:106px; border:1px solid #b3b3b3;}
-	.header {height:27px; background:url(images/bg_header.gif) repeat-x left top;}
-	.header .title {padding-left:28px; font-weight:bold; line-height:23px; background:url(images/bul_title.gif) no-repeat 11px 6px; float:left;}
+	.header {height:27px; background:url(../../uiplugin/grid/upload/images/bg_header.gif) repeat-x left top;}
+	.header .title {padding-left:28px; font-weight:bold; line-height:23px; background:url(../../uiplugin/grid/upload/images/bul_title.gif) no-repeat 11px 6px; float:left;}
 	.header .title2 {padding-left:28px; font-weight:bold; line-height:23px; float:left;}
 	.header span {padding-right:20px; float:right; display:block;}
 	.header span input[type=checkbox] {position:relative; top:1px;}
@@ -766,7 +911,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 
 	.tbl {margin:15px auto 0; width:400px;}
 	.tbl th, .tbl td {min-width:100px; height:24px; text-align:left;}
-	.tbl th .dot {padding-left:14px; background:url(images/dot.gif) no-repeat left center;}
+	.tbl th .dot {padding-left:14px; background:url(../../uiplugin/grid/upload/images/dot.gif) no-repeat left center;}
 	.tbl td .ipt {width:74px; height:16px; /*bordeR:1px solid #abadb3;*/}
 	.tbl td .sel {width:80px; height:20px;}
 	.btn_file {margin-bottom:14px; width:90px; position:relative; left:333px;}
@@ -872,6 +1017,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
   <input type="hidden" id="dateFormat" name="dateFormat" value="" />
   <input type="hidden" id="byteCheckEncoding" name="byteCheckEncoding" value="" />
   <input type="hidden" id="columnOrder" name="columnOrder" value="" />
+  <input type="hidden" id="gridSheetName" name="gridSheetName" value="" />
+  <input type="hidden" id="chunkNum" name="chunkNum" value="" />
 </form>
 
 </body>

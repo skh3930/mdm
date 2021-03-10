@@ -21,6 +21,8 @@
     var status = "";
     var optionParam = "";
     var maxFileSize = -1;
+    var useModalDisable = "";
+    var columnOrder = "";
 
    	// 다국어
    	var Upload_ignore_spaces = "";
@@ -44,20 +46,34 @@
    	var Grid_warning9 = "";
 
 	window.onload = doInit;
+	window.onbeforeunload = doFinish;
 	function doInit() {
+
+		gridID = getParameter("gridID");
+		var uploadInfo = opener.JSON.parse( opener[gridID]._csvUploadInfo );
+
+		// 팝업 사이즈 보정
+		if(navigator.userAgent.indexOf("Windows") != -1) {
+		 		osName = "window";
+		 	} else if(navigator.userAgent.indexOf("Macintosh") != -1) {
+		 		osName = "mac";
+		 	}
+
+		 	var sizeInfo = crossBrowserSize();
+			window.resizeTo( sizeInfo.width, sizeInfo.height );
+
 		if(opener.WebSquare.util.isOpera()) {
 			check_fun();
 		}
 
         try {
-            domain = getParameter("domain");  
+            domain = getParameter("domain");
             if(domain) {
                 document.domain = domain;
             }
         } catch (e) {
         }
-
-        var postMsg = getParameter("postMsg");
+        var postMsg = uploadInfo.postMsg;
     	if(postMsg == "true") {
 			if(window.addEventListener) {
 			    window.addEventListener ("message", receiveMessage, false);
@@ -68,6 +84,10 @@
 			}
     	}
 
+    	useModalDisable = uploadInfo.useModalDisable;
+    	if(useModalDisable == "true") {
+			opener.WebSquare.layer.showModal();
+    	}
         Upload_ignore_spaces = opener.WebSquare.language.getMessage( "Upload_ignore_spaces" ) || "공백무시";
         Upload_include_spaces = opener.WebSquare.language.getMessage( "Upload_include_spaces" ) || "공백포함";
 		Upload_advanced = opener.WebSquare.language.getMessage( "Upload_advanced" ) || "고급설정";
@@ -85,7 +105,7 @@
 		Upload_msg3 = opener.WebSquare.language.getMessage( "Upload_msg3" ) || "정상적으로 처리 되지 않았습니다.";
 		Upload_msg4 = opener.WebSquare.language.getMessage( "Upload_msg4" ) || "FileType에 맞지 않는 File의 확장자입니다.";
 		Upload_msg5 = opener.WebSquare.language.getMessage( "Upload_msg5" ) || "그리드 반영에 실패하였습니다";
-		maxFileSize = getParameter("maxFileSize");
+		maxFileSize = uploadInfo.maxFileSize;
 		maxFileSize = parseInt( maxFileSize, 10 );
 		Grid_warning9 = opener.WebSquare.language.getMessage( "Grid_warning9", maxFileSize ) || "전송 data가 제한 크기를 초과 하였습니다.\n 제한 크기 : %1 byte";
 
@@ -106,38 +126,42 @@
 		sel3.options[0].text = Upload_fill;
 		sel3.options[1].text = Upload_ignore;
 		document.getElementById( "sendFILE").value =  Upload_file;
-		document.getElementById( "header_option").value =  Upload_header;
+		document.getElementById( "header_option").innerHTML =  Upload_header;
+		var sel4 = document.getElementById("header");
+		sel4.options[0].text = Upload_include;
+		sel4.options[1].text = Upload_not_include;
 
 		//  header, append, hidden, columnNum, hiddenColumns, action
-        type = getParameter("type");
-        uploadType = getParameter("uploadType");
-        var delim = getParameter("delim");
-        var escapeChar = getParameter("escapeChar");
-        var vheader = getParameter("header");
-        vfooter = getParameter("footer");
-        vappend = getParameter("append");
-        var vhidden = getParameter("hidden");
-        var fillHidden = getParameter("fillHidden");
-        var advancedHidden = getParameter("advancedHidden");
-		var skipSpace = getParameter("skipSpace");
-		var vremoveColumns = getParameter("removeColumns");
-		var actionUrl = getParameter("action");
-		gridID = getParameter("gridID");
-		var vcolumnNum = getParameter("columnNum");
-		var expressionColumns = getParameter("expressionColumns");
-		var vhiddenColumns = getParameter("hiddenColumns");
-		var vheaderRows = getParameter("headerRows");
-		var gridStartRow = getParameter("gridStartRow");
+        type = uploadInfo.type;
+        uploadType = uploadInfo.uploadType;
+        var delim = uploadInfo.delim;
+        var escapeChar = uploadInfo.escapeChar;
+        var vheader = uploadInfo.header;
+        vfooter = uploadInfo.footer;
+        vappend = uploadInfo.append;
+        var vhidden = uploadInfo.hidden;
+        var fillHidden = uploadInfo.fillHidden;
+        var advancedHidden = uploadInfo.advancedHidden;
+		var skipSpace = uploadInfo.skipSpace;
+		var vremoveColumns = uploadInfo.removeColumns;
+		var actionUrl = uploadInfo.action;
+		gridID = uploadInfo.gridID;
+		var vcolumnNum = uploadInfo.columnNum;
+		var expressionColumns = uploadInfo.expressionColumns;
+		var vhiddenColumns = uploadInfo.hiddenColumns;
+		var vheaderRows = uploadInfo.headerRows;
+		var gridStartRow = uploadInfo.gridStartRow;
 		//var gridStartCol = getParameter("gridStartCol");
 	    
-		columnIds = getParameter("columnIds");
+		columnIds = uploadInfo.columnIds;
 
-		processMsg = getParameter("processMsg");
+		processMsg = uploadInfo.processMsg;
 		processMsg = opener.WebSquare.text.BASE64URLDecoder( processMsg );
-		dataList = getParameter("dataList");
-		expression = getParameter("expression");
-		status = getParameter("status");
-		optionParam = getParameter("optionParam");
+		dataList = uploadInfo.dataList;
+		expression = uploadInfo.expression;
+		status = uploadInfo.status;
+		optionParam = uploadInfo.optionParam;
+		columnOrder = uploadInfo.columnOrder;
 
 		document.getElementById("domain").value = domain;
 		document.getElementById("delim").value = delim;
@@ -190,12 +214,24 @@
 			skip_space[0].options[1].selected = true;
 		}
 
+		// header
+		var header =document.getElementsByName("header");
+		if( typeof vheader == "string" ) {
+			vheader  = opener.WebSquare.util.getBoolean(vheader);
+		}
+		
+		if( vheader ) {
+			header[0].options[0].selected = true;
+		} else {
+			header[0].options[1].selected = true;
+		}
+
 		document.getElementById("removeColumns").value = vremoveColumns;
 		document.getElementById("columnNum").value = vcolumnNum;
 		document.getElementById("expressionColumns").value = expressionColumns;
 		document.getElementById("hiddenColumns").value = vhiddenColumns;
 		//document.getElementById("footer").value = vfooter;
-		document.getElementById("header").value = vheader;
+		//document.getElementById("header").value = vheader;
 		document.getElementById("headerRows").value = vheaderRows;
 
         // row 조회
@@ -212,6 +248,7 @@
 		document.getElementById("gridStyle").value = opener.WebSquare.xml.noNameSpaceSerialize(opener[gridID].element);
 		document.getElementById("expression").value = expression;
 		document.getElementById("optionParam").value = optionParam;
+		document.getElementById("columnOrder").value = columnOrder;
 
 		with( document.__uploadForm__ ) {
 			action = actionUrl;
@@ -227,6 +264,12 @@
         }
 	}
 	
+    function doFinish() {
+    	if(useModalDisable == "true") {
+        	opener.WebSquare.layer.hideModal();
+    	}
+    }
+
 	function upload( thisForm ) {
 		try {
 			var filename = document.getElementById("filename").value;
@@ -280,7 +323,6 @@
 	}
 
 	function returnData( vData ) {
-		
 		if( processMsg != "" ) {
 			hideProcessMessage();
 		}
@@ -385,31 +427,121 @@
 		}
 	}
 
-	function crossBrowserHeight() {
+	function crossBrowserSize() {
+	 	var sizeInfo = {
+	 		"height": 204,
+	 		"width": 462
+	 	};
+
 		if(opener.WebSquare.util.isIE(6)) {
-			return 67;
+			sizeInfo.height = 212;
+			sizeInfo.width = 456;
 		} else if(opener.WebSquare.util.isIE(7)) {
-			return 67;
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
 		} else if(opener.WebSquare.util.isIE(8)) {
-			return 67;
-		} else if(opener.WebSquare.util.isIE(9)) {
-			return 67;
-		} else if(opener.WebSquare.util.isIE(10)) {
-			return 67;
-		} else if(opener.WebSquare.util.isFF()) {
-			//return 120;
-			return 67;
+			sizeInfo.height = 218;
+			sizeInfo.width = 457;
+		}  else if(opener.WebSquare.util.isIE(9)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		}  else if(opener.WebSquare.util.isIE(10)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 446;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+			sizeInfo.height = 204;
+			sizeInfo.width = 462;
+		} else if(opener.WebSquare.util.isSpartan()) {
+			sizeInfo.height = 178;
+			sizeInfo.width = 446;
 		} else if(opener.WebSquare.util.isChrome()) {
-			return 67;
-			//return 123;
+			if(navigator.userAgent.indexOf("OPR") != -1) {  //opera
+				if(osName == "window") {
+					sizeInfo.height = 203;
+					sizeInfo.width = 458;
+				} else if(osName == "mac") {
+					sizeInfo.height = 189;
+					sizeInfo.width = 446;
+				}
+			} else { //chrome
+				if(osName == "window") {
+					sizeInfo.height = 206;
+					sizeInfo.width = 463;
+				} else if(osName == "mac") {
+					sizeInfo.height = 181;
+					sizeInfo.width = 446;
+				}
+			}
+        } else if(opener.WebSquare.util.isFF()) {
+        	if(osName == "window") {
+				sizeInfo.height = 213;
+				sizeInfo.width = 462;
+			} else if(osName == "mac") {
+				sizeInfo.height = 191;
+				sizeInfo.width = 446;
+			}
 		} else if(opener.WebSquare.util.isSafari()) {
-			return 67;
+			if(osName == "window") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 155;
+				sizeInfo.width = 446;
+			}
 		} else if(opener.WebSquare.util.isOpera()) {
-			return 67;
-		} 
-		return 67;
+			if(osName == "window") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			} else if(osName == "mac") {
+				sizeInfo.height = 189;
+				sizeInfo.width = 446;
+			}
+		}
+
+		return sizeInfo;
+	 }
+
+	 function crossBrowserHeight() {
+		var widthSize = 100;
+		if(opener.WebSquare.util.isIE(6)) {
+			widthSize = 100;
+		} else if(opener.WebSquare.util.isIE(7)) {
+			widthSize = 100;
+		} else if(opener.WebSquare.util.isIE(8)) {
+			widthSize = 100;
+		} else if(opener.WebSquare.util.isIE(9)) {
+			widthSize = 100;
+		} else if(opener.WebSquare.util.isIE(10)) {
+			widthSize = 93;
+		} else if(opener.WebSquare.util.isIEAllVersion(11)) {
+            widthSize = 100;
+        } else if(opener.WebSquare.util.isFF()) {
+			if(osName == "window") {
+				widthSize = 93;
+			} else if(osName == "mac") {
+				widthSize = 93;
+			}
+		} else if(opener.WebSquare.util.isChrome()) {
+			if(osName == "window") {
+				widthSize = 92;
+			} else if(osName == "mac") {
+				widthSize = 95;
+			}
+		} else if(opener.WebSquare.util.isSafari()) {
+			if(osName == "mac") {
+				widthSize = 145;
+			}
+		} else if(opener.WebSquare.util.isOpera()) {
+			if(osName == "window") {
+				widthSize = 100;
+			} else if(osName == "mac") {
+				widthSize = 145;
+			}
+		}
+
+		return widthSize;
 	}
-	
+
 	function check_fun() {
 		var checkfun = document.getElementById('subcheck').checked;
 		if( checkfun == true ) {
@@ -646,6 +778,7 @@
   <input type="hidden" id="gridStyle" name="gridStyle" value="" />
   <input type="hidden" id="expression" name="expression" value="" />
   <input type="hidden" id="optionParam" name="optionParam" value="" />  
+  <input type="hidden" id="columnOrder" name="columnOrder" value="" />  
 </form>
 
 </body>

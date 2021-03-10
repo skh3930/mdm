@@ -15,7 +15,6 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 <meta http-equiv=Cache-Control content=No-Cache />
 <meta http-equiv=Pragma content=No-Cache />
 <title>FILE UPLOAD</title>
-<script type="text/javascript" src="../../../message/htmlCommon.js"></script>
 <script language="JavaScript">
     var osName = "";
     var domain = "";
@@ -65,7 +64,21 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
     var Upload_msg16 = "";
     var Upload_msg17 = "";
     var Grid_warning9 = "";
-    
+
+    var paramObj;
+    var isIE = navigator.appName.match(/Explorer/i) != null;
+    var isMoz = navigator.userAgent.match(/Firefox/i) != null || (navigator.userAgent.match(/Gecko/i) != null && navigator.userAgent.match(/AppleWebKit/i) == null);
+    var isOpera = navigator.userAgent.match(/Opera/i) != null;
+    var isChrome = !isIE && (navigator.userAgent.match(/Chrome/i) != null);
+    var isAndroid = /Android/.test(navigator.userAgent);
+    var isIphone = /iPhone/.test(navigator.userAgent);
+    var isIpad = /iPad/.test(navigator.userAgent);
+    var isIpod = /iPod/.test(navigator.userAgent);
+    var isSafari = false;
+    if (typeof navigator.vendor != "undefined") {
+        isSafari = navigator.vendor.indexOf("Apple") > -1;
+    }
+
     window.onload = doInit;
     window.onbeforeunload = doFinish;
     function doInit() {
@@ -597,6 +610,51 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
         splitDataIn[splitDataIn.length-1] = splitDataIn[splitDataIn.length-1].substr(0,((splitDataIn[splitDataIn.length-1]).length-2)); 
         return splitDataIn;
     }
+
+    function getParameter(param) {
+        var ret = "";
+        try {
+            if (!paramObj) {
+                paramObj = {};
+                var srch = location.search.substring(1);
+                var arrayOfSrch = srch.split("&");
+                for (var i = 0; i < arrayOfSrch.length; i++) {
+                    var tmpArray = arrayOfSrch[i].split("=");
+                    if (tmpArray.length == 2) {
+                        paramObj[trim(tmpArray[0])] = trim(tmpArray[1]);
+                    }
+                }
+            }
+            ret = paramObj[param];
+        } catch (e) {
+            ret = "";
+        }
+        if (ret == null || typeof ret == 'undefined') {
+            ret = '';
+        }
+        return decodeURI(ret);
+    }
+
+    function trim(str) {
+        if (typeof str == "undefined" && str == null) return "";
+        var leftTrimRegExp = new RegExp("^\\s\\s*");
+        var rightTrimRegExp = new RegExp("\\s\\s*$");
+        str = str.replace(leftTrimRegExp, '').replace(rightTrimRegExp, '');
+        return str;
+    }
+
+    function getPopupParam() {
+        try {
+            var str = getParameter("modalParamIdx");
+            return opener.WebSquare.net._getParam(str);
+        } catch (e) {
+            return "";
+        }
+    }
+
+    function endsWith(str, s) {
+        return str.substring(str.length - s.length, str.length) == s;
+    }
 </script>
 
 <style type="text/css">
@@ -610,8 +668,8 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
     .block {display:block;}
 
     .wrap {width:444px; min-height:106px; border:1px solid #b3b3b3;}
-    .header {height:27px; background:url(images/bg_header.gif) repeat-x left top;}
-    .header .title {padding-left:28px; font-weight:bold; line-height:23px; background:url(images/bul_title.gif) no-repeat 11px 6px; float:left;}
+    .header {height:27px; background:url(../../uiplugin/grid/upload/images/bg_header.gif) repeat-x left top;}
+    .header .title {padding-left:28px; font-weight:bold; line-height:23px; background:url(../../uiplugin/grid/upload/images/bul_title.gif) no-repeat 11px 6px; float:left;}
     .header .title2 {padding-left:28px; font-weight:bold; line-height:23px; float:left;}
     .header span {padding-right:20px; float:right; display:block;}
     .header span input[type=checkbox] {position:relative; top:1px;}
@@ -622,7 +680,7 @@ if(ref == null || ref.equals("") || param == null || param.equals("")) {
 
     .tbl {margin:15px auto 0; width:400px;}
     .tbl th, .tbl td {min-width:100px; height:24px; text-align:left;}
-    .tbl th .dot {padding-left:14px; background:url(images/dot.gif) no-repeat left center;}
+    .tbl th .dot {padding-left:14px; background:url(../../uiplugin/grid/upload/images/dot.gif) no-repeat left center;}
     .tbl td .ipt {width:74px; height:16px; /*bordeR:1px solid #abadb3;*/}
     .tbl td .sel {width:80px; height:20px;}
     .btn_file {margin-bottom:14px; width:90px; position:relative; left:333px;}

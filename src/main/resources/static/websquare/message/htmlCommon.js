@@ -55,4 +55,4 @@ function getPopupParam() {
 
 function endsWith(str, s) {
     return str.substring(str.length - s.length, str.length) == s;
-};
+}

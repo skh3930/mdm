@@ -70,7 +70,6 @@ var gcm = {
 				var exTag = [ "INPUT" ];
 				var activeTag = document.activeElement.tagName;
 				if (exTag.indexOf(activeTag) == -1) {
-					console.log(activeTag + "########################");
 					gcm.shortcutEvent["checkEvent"].apply(this, [ e ]);
 				}
 			}

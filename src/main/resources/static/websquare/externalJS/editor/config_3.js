@@ -18,6 +18,18 @@ CKEDITOR.editorConfig = function( config )
 	                                	['Font','FontSize','Table','Image'],
 	                                  	['Bold','Italic','Underline','TextColor']
 	                                  ];
+	config.toolbar_defaultImage = [
+	                                  	['Source','DocProps','-','NewPage','Preview','-'],
+	                                  	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
+	                                  	['Undo','Redo','SelectAll','RemoveFormat'],
+	                                  	['Bold','Italic','Underline'],
+	                                  	['StrikeThrough','Subscript','Superscript'],
+	                                  	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
+	                                  	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	                                  	['Anchor','Table','Image'],
+	                                  	['Rule','SpecialChar','PageBreak','TextColor','BGColor','ShowBlocks'],
+	                                  	['Styles','Format','Font','FontSize']		// No comma for the last row.
+	                                  ] ;
 	config.font_names	 = '굴림;궁서;돋움;바탕;Arial;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana' ; 
 	config.fullPage = false;   //true이면 html태그 까지 보임 false이면 에디터 부분 태그만 보임(html로 보기 시에)
 	config.enterMode = CKEDITOR.ENTER_BR; //엔터시 입력되는 태그 BR P DIV 세 종류가 있습니다.
