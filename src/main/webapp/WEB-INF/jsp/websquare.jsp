@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-<link rel="shortcut icon" href="/cm/images/inc/favicon.ico" />
-<title>Project Template</title>
+<link rel="shortcut icon" href="/cm/images/inc/logo_kyobo_small.png" />
+<title>KYOBO 기준정보</title>
 <script type="text/javascript">
 	var WebSquareExternal = {
 		"baseURI": "/websquare/", "w2xPath" : 
