@@ -21,7 +21,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
+    maven { url "http://112.108.68.28:8081/repository/maven-central/" }
 }
 
 dependencies {

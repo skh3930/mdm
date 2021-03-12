@@ -42,10 +42,10 @@ public class CodeController {
 	@PostMapping("/registerCode")
 	public Map<String, Object> registerCode(@RequestBody Map<String, Object> param) {
 
-		List<CodeGrp> codeGrps = BeanUtil.mapToBeanList((List) param.get("dlt_codeGrp"), CodeGrp.class); // 코드그룹
-		List<CodeDtl> codeDtls = BeanUtil.mapToBeanList((List) param.get("dlt_codeDtl"), CodeDtl.class); // 코드상세
-		List<CodeRlts> codeRltss = BeanUtil.mapToBeanList((List) param.get("dlt_codeRlts"), CodeRlts.class); // 코드관계
-		List<CodeDtlRlts> codeDtlRltss = BeanUtil.mapToBeanList((List) param.get("dlt_codeDtlRlts"), CodeDtlRlts.class); // 코드상세관계
+		List<CodeGrp> codeGrps = BeanUtil.mapToBeanList(param.get("dlt_codeGrp"), CodeGrp.class); // 코드그룹
+		List<CodeDtl> codeDtls = BeanUtil.mapToBeanList(param.get("dlt_codeDtl"), CodeDtl.class); // 코드상세
+		List<CodeRlts> codeRltss = BeanUtil.mapToBeanList(param.get("dlt_codeRlts"), CodeRlts.class); // 코드관계
+		List<CodeDtlRlts> codeDtlRltss = BeanUtil.mapToBeanList(param.get("dlt_codeDtlRlts"), CodeDtlRlts.class); // 코드상세관계
 
 		List<CodeGrp> codeGrpList = codeProcess.registerCodes(codeGrps, codeDtls, codeRltss, codeDtlRltss);
 

@@ -35,7 +35,7 @@ public class CodeSearchController {
     @PostMapping("/findCode")
     public Map<String, Object> findCode(@RequestBody Map<String, Object> param) {
 
-        CodeSearchCond codeSearchCond = BeanUtil.mapToBean((Map) param.get("dma_codeSearchCond"), CodeSearchCond.class);
+        CodeSearchCond codeSearchCond = BeanUtil.mapToBean(param.get("dma_codeSearchCond"), CodeSearchCond.class);
         
         List<CodeSearch> codes = codeSearchService.findCodes(codeSearchCond);
 

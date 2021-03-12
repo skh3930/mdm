@@ -1,4 +1,4 @@
-package com.kyobobook.mdm;
+package com.kyobobook.mdm.common.controller;
 
 import java.util.Map;
 
